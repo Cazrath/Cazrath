@@ -1,83 +1,68 @@
-import Head from 'next/head';
+// pages/index.js
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 
 export default function Home() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const VALID_USERNAME = 'Cazrath';
+  const VALID_PASSWORD = 'Cazaye45';
+
+  useEffect(() => {
+    const stored = localStorage.getItem('isLoggedIn');
+    if (stored === 'true') setIsLoggedIn(true);
+  }, []);
+
+  const handleLogin = () => {
+    if (username === VALID_USERNAME && password === VALID_PASSWORD) {
+      setIsLoggedIn(true);
+      localStorage.setItem('isLoggedIn', 'true');
+    } else {
+      alert('Invalid login');
+    }
+  };
+
   return (
-    <div>
+    <div style={{ background: '#000', color: '#fff', minHeight: '100vh', padding: '40px', textAlign: 'center' }}>
       <Head>
-        <title>𝕮𝖆𝖟𝖗𝖆𝖙𝖍</title>
+        <title>ℭ𝔞𝔷𝔯𝔞𝔱𝔥</title>
       </Head>
+      <h1 style={{ fontSize: '3rem', letterSpacing: '4px' }}>ℭ𝔞𝔷𝔯𝔞𝔱𝔥</h1>
 
-      <audio autoPlay loop hidden>
-        <source src="/bg-music.mp3" type="audio/mpeg" />
-      </audio>
-
-      <header className="hero">
-        <h1 className="logo">𝕮𝖆𝖟𝖗𝖆𝖙𝖍</h1>
-        <nav>
-          <Link href="#about">About</Link>
-          <Link href="#achievements">Achievements</Link>
-          <Link href="/screenshots">Screenshots</Link>
-          <Link href="#socials">Socials</Link>
-        </nav>
-      </header>
-
-      <main>
-        <section id="about">
-          <h2>About Me</h2>
-          <p>I walk my own path.</p>
-        </section>
-
-        <section id="achievements">
-          <h2>Achievements</h2>
-          <ul>
-            <li>Divine Rank – Dota 2</li>
-            <li>100% Sekiro Completion</li>
-            <li>10,000+ Hours Played</li>
-          </ul>
-        </section>
-
-        <section id="socials">
-          <h2>Socials</h2>
-          <p>Coming soon...</p>
-        </section>
-      </main>
-
-      <style jsx>{`
-        body {
-          background: #000;
-          color: #fff;
-          font-family: monospace;
-        }
-        .hero {
-          text-align: center;
-          padding: 40px;
-        }
-        .logo {
-          font-size: 3rem;
-          margin-bottom: 10px;
-        }
-        nav a {
-          margin: 0 10px;
-          color: #aaa;
-          text-decoration: none;
-        }
-        nav a:hover {
-          color: #fff;
-        }
-        main {
-          max-width: 800px;
-          margin: 40px auto;
-          padding: 0 20px;
-        }
-        section {
-          margin-bottom: 60px;
-        }
-        h2 {
-          border-bottom: 1px solid #444;
-          padding-bottom: 5px;
-        }
-      `}</style>
+      {!isLoggedIn ? (
+        <div style={{ marginTop: '40px' }}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            style={{ padding: '10px', marginRight: '10px', background: '#111', border: '1px solid #444', color: '#fff', borderRadius: '4px' }}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            style={{ padding: '10px', marginRight: '10px', background: '#111', border: '1px solid #444', color: '#fff', borderRadius: '4px' }}
+          />
+          <button
+            onClick={handleLogin}
+            style={{ padding: '10px 20px', background: '#333', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+          >
+            Login
+          </button>
+        </div>
+      ) : (
+        <div style={{ marginTop: '30px' }}>
+          <p>Welcome, Cazrath. You are logged in.</p>
+          <Link href="/screenshots" style={{ color: '#aaa', textDecoration: 'underline' }}>
+            Go to Screenshot Manager
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
