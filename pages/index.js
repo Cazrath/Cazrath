@@ -1,68 +1,91 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
-export default function Gate() {
-  const router = useRouter();
+export default function Home() {
+  const [unlocked, setUnlocked] = useState(false);
   const [code, setCode] = useState('');
 
   useEffect(() => {
-    if (localStorage.getItem('hasAccess') === 'true') {
-      router.push('/home');
+    const stored = localStorage.getItem('hasAccess');
+    if (stored === 'true') {
+      setUnlocked(true);
     }
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleCode = (e) => {
     e.preventDefault();
     if (code === '2005') {
       localStorage.setItem('hasAccess', 'true');
-      router.push('/home');
+      setUnlocked(true);
     } else {
       alert('wrong code');
     }
   };
 
-  return (
-    <div className="gate-container">
-      <h1>you’ve reached a system forgotten on purpose</h1>
-      <p>input the code to remember what was buried</p>
+  if (!unlocked) {
+    return (
+      <div className="gate-container">
+        <h1>you’ve reached a system forgotten on purpose</h1>
+        <p>input the code to remember what was buried</p>
+        <form onSubmit={handleCode}>
+          <input
+            type="password"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            placeholder="Enter code"
+          />
+          <button type="submit">Enter</button>
+        </form>
+        <style jsx>{`
+          .gate-container {
+            min-height: 100vh;
+            background: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: monospace;
+            padding: 2rem;
+          }
+          input {
+            margin-top: 20px;
+            padding: 10px;
+            background: #111;
+            color: #fff;
+            border: 1px solid #333;
+          }
+          button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #111;
+            color: #fff;
+            border: 1px solid #555;
+            cursor: pointer;
+          }
+        `}</style>
+      </div>
+    );
+  }
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="password"
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-          placeholder="Enter code"
-        />
-        <button type="submit">Enter</button>
-      </form>
+  return (
+    <div className="main-container">
+      <header>
+        <h1>𝕮𝖆𝖟𝖗𝖆𝖙𝖍</h1>
+      </header>
+      <main>
+        <p>Welcome to the real system.</p>
+        {/* You can build your real sections here: About, Screenshots, etc */}
+      </main>
 
       <style jsx>{`
-        .gate-container {
-          min-height: 100vh;
+        .main-container {
           background: #000;
           color: #fff;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+          min-height: 100vh;
           font-family: monospace;
+          padding: 2rem;
           text-align: center;
-          padding: 20px;
-        }
-        input {
-          margin-top: 20px;
-          padding: 10px;
-          background: #111;
-          color: #fff;
-          border: 1px solid #444;
-        }
-        button {
-          margin-top: 10px;
-          padding: 10px 20px;
-          background: #111;
-          color: #fff;
-          border: 1px solid #555;
-          cursor: pointer;
         }
       `}</style>
     </div>
