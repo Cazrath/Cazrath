@@ -1,94 +1,67 @@
-
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 
-export default function Home() {
+export default function Gate() {
   const router = useRouter();
-  const [hasAccess, setHasAccess] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [code, setCode] = useState('');
 
   useEffect(() => {
-    const access = localStorage.getItem('hasAccess');
-    const login = localStorage.getItem('loggedIn');
-    if (!access) {
-      router.push('/Ecl1pse');
-    } else {
-      setHasAccess(true);
-      setIsLoggedIn(login === 'true');
+    if (localStorage.getItem('hasAccess') === 'true') {
+      router.push('/home');
     }
   }, []);
 
-  if (!hasAccess) return null;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (code === '2005') {
+      localStorage.setItem('hasAccess', 'true');
+      router.push('/home');
+    } else {
+      alert('wrong code');
+    }
+  };
 
   return (
-    <div className="main-container">
-      <header>
-        <div className="topbar">
-          <div className="logo-circle">
-            <span className="logo-text">C</span>
-          </div>
-          <Link href="/login">
-            <button className="login-btn">Login</button>
-          </Link>
-        </div>
-      </header>
+    <div className="gate-container">
+      <h1>you’ve reached a system forgotten on purpose</h1>
+      <p>input the code to remember what was buried</p>
 
-      <main>
-        <section className="about">
-          <h2>About Me</h2>
-          <p>i walk my own path.</p>
-        </section>
-        <section>
-          <Link href="/Fragments">
-            <button className="nav-btn">View Fragments</button>
-          </Link>
-        </section>
-      </main>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="password"
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+          placeholder="Enter code"
+        />
+        <button type="submit">Enter</button>
+      </form>
 
       <style jsx>{`
-        .main-container {
+        .gate-container {
+          min-height: 100vh;
           background: #000;
           color: #fff;
-          min-height: 100vh;
-          font-family: monospace;
-          padding: 40px;
-        }
-        .topbar {
           display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .logo-circle {
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          background: #111;
-          display: flex;
-          align-items: center;
+          flex-direction: column;
           justify-content: center;
+          align-items: center;
+          font-family: monospace;
+          text-align: center;
+          padding: 20px;
+        }
+        input {
+          margin-top: 20px;
+          padding: 10px;
+          background: #111;
+          color: #fff;
           border: 1px solid #444;
         }
-        .logo-text {
-          font-size: 1.5rem;
-          color: #fff;
-        }
-        .login-btn {
-          background: transparent;
-          color: #fff;
-          border: 1px solid #444;
-          padding: 5px 15px;
-          cursor: pointer;
-        }
-        .about {
-          margin-top: 80px;
-        }
-        .nav-btn {
-          margin-top: 40px;
+        button {
+          margin-top: 10px;
           padding: 10px 20px;
           background: #111;
           color: #fff;
-          border: 1px solid #444;
+          border: 1px solid #555;
           cursor: pointer;
         }
       `}</style>
