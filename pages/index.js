@@ -1,4 +1,7 @@
+// pages/index.js
 import { useEffect, useState } from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
 
 export default function Home() {
   const [unlocked, setUnlocked] = useState(false);
@@ -17,7 +20,7 @@ export default function Home() {
       localStorage.setItem('hasAccess', 'true');
       setUnlocked(true);
     } else {
-      alert('wrong code');
+      alert('Wrong code');
     }
   };
 
@@ -70,12 +73,32 @@ export default function Home() {
 
   return (
     <div className="main-container">
+      <Head>
+        <title>𝕮𝖆𝖟𝖗𝖆𝖙𝖍</title>
+      </Head>
       <header>
-        <h1>𝕮𝖆𝖟𝖗𝖆𝖙𝖍</h1>
+        <h1 className="logo">𝕮𝖆𝖟𝖗𝖆𝖙𝖍</h1>
+        <nav>
+          <Link href="#about">About</Link>
+          <Link href="#achievements">Achievements</Link>
+          <Link href="/Fragments">Fragments</Link>
+        </nav>
       </header>
+
       <main>
-        <p>Welcome to the real system.</p>
-        {/* You can build your real sections here: About, Screenshots, etc */}
+        <section id="about">
+          <h2>About Me</h2>
+          <p>I walk my own path.</p>
+        </section>
+
+        <section id="achievements">
+          <h2>Achievements</h2>
+          <ul>
+            <li>Divine Rank – Dota 2</li>
+            <li>100% Completion – Sekiro</li>
+            <li>10,000+ Hours – Mastered Gameplay</li>
+          </ul>
+        </section>
       </main>
 
       <style jsx>{`
@@ -86,6 +109,26 @@ export default function Home() {
           font-family: monospace;
           padding: 2rem;
           text-align: center;
+        }
+        .logo {
+          font-size: 3rem;
+          letter-spacing: 8px;
+          margin-bottom: 10px;
+        }
+        nav a {
+          margin: 0 15px;
+          color: #aaa;
+          text-decoration: none;
+        }
+        nav a:hover {
+          color: #fff;
+        }
+        section {
+          margin: 60px 0;
+        }
+        h2 {
+          border-bottom: 1px solid #444;
+          padding-bottom: 10px;
         }
       `}</style>
     </div>
