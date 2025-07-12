@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cazrath - Gate</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      background: black;
+      color: white;
+      font-family: monospace;
+      overflow: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: url('/glitch.gif') center center / cover no-repeat;
+      opacity: 0.2;
+      z-index: -1;
+    }
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .center h1 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease-out;
+    }
+    .input-container {
+      position: relative;
+    }
+    #codeInput {
+      background: transparent;
+      border: 2px solid white;
+      padding: 10px 15px;
+      color: white;
+      font-size: 1rem;
+      width: 250px;
+      text-align: center;
+      outline: none;
+    }
+    .shake {
+      animation: shake 0.3s;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-10px); }
+      40% { transform: translateX(10px); }
+      60% { transform: translateX(-6px); }
+      80% { transform: translateX(6px); }
+    }
+    .error {
+      color: red;
+      font-size: 0.8rem;
+      margin-top: 10px;
+      animation: flicker 1.5s infinite;
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="center">
+    <h1>
+      you’ve reached a system forgotten on purpose<br>
+      input the code to remember what was buried
+    </h1>
+    <div class="input-container">
+      <input type="text" id="codeInput" placeholder="Enter code" autofocus />
+      <div id="errorMsg" class="error" style="display:none">memory access denied</div>
+    </div>
+  </div>
+
+  <script>
+    const input = document.getElementById('codeInput');
+    const errorMsg = document.getElementById('errorMsg');
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        if (input.value === '2005') {
+          window.location.href = '/';
+        } else {
+          input.classList.add('shake');
+          errorMsg.style.display = 'block';
+          setTimeout(() => input.classList.remove('shake'), 300);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
