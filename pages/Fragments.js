@@ -1,1 +1,0 @@
-// Fragments screenshot viewer page
