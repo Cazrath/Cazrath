@@ -1,0 +1,1 @@
+// Individual screenshot display logic
