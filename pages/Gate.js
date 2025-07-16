@@ -1,1 +1,0 @@
-// Gate page with glitch effect and code input
