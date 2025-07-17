@@ -7,35 +7,16 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="gate" id="codeGate">
-    <div class="gate-message">
-      <h1>you’ve reached a system forgotten on purpose</h1>
-      <p>input the code to remember what was buried</p>
-      <input type="password" id="accessCode" placeholder="Enter access code" />
-      <button onclick="checkCode()">Enter</button>
-      <p id="codeError"></p>
-    </div>
+  <div class="container">
+    <h1>Cazrath</h1>
+    <p class="soul-line">
+      even if the sky falls, the soul it feared most — <strong>Cazrath</strong> — will still be standing where gravity ends.
+    </p>
+    <p class="path-line">
+      if you see me, it’s because i let you · i walked to escape the noise but found myself in silence · the world didn’t give me answers — it gave me questions that felt like home · and i learned peace is not a place — it’s a path
+    </p>
+    <button onclick="login()">enter</button>
   </div>
-
-  <main id="mainContent" style="display: none;">
-    <section class="intro">
-      <h1>Cazrath</h1>
-      <p class="soul-quote">
-        even if the sky falls, the soul it feared most — Cazrath — will still be standing where gravity ends.
-      </p>
-      <p class="poetic-line">
-        if you see me, it’s because i let you · i walked to escape the noise but found myself in silence · the world didn’t give me answers — it gave me questions that felt like home · and i learned peace is not a place — it’s a path
-      </p>
-    </section>
-
-    <section class="fragments">
-      <h2>Fragments</h2>
-      <div class="screenshots" id="screenshotsContainer">
-        <!-- Dynamic Screenshots Will Load Here -->
-      </div>
-    </section>
-  </main>
-
   <script src="script.js"></script>
 </body>
 </html>
