@@ -1,21 +1,17 @@
 {
-  "name": "cazrath",
-  "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx prisma generate && next build",
+    "build": "next build",
     "start": "next start",
+    "postinstall": "prisma generate",
     "vercel-build": "npm install && npm run build"
   },
   "dependencies": {
-    "@prisma/client": "^5.14.0",
-    "next": "^14.2.3",
-    "next-auth": "^4.24.7",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "prisma": "^5.14.0"
+    "@prisma/client": "^5.0.0",
+    "next": "^14.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "next-auth": "^4.0.0"
   },
   "prisma": {
     "schema": "prisma/schema.prisma"
