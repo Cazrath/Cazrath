@@ -1,4 +1,3 @@
-// Full content (replace entire file if exists):
 {
   "scripts": {
     "dev": "next dev",
