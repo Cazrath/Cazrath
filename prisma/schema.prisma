@@ -1,7 +1,0 @@
-model Fragment {
-  id        String   @id @default(uuid())
-  title     String
-  views     Int      @default(0)
-  url       String
-  createdAt DateTime @default(now())
-}
