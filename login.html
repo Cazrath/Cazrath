@@ -17,19 +17,72 @@
   }
 
   .login-box {
-    border: 2px solid white;
-    padding: 40px;
+    border: 1px solid white;
+    padding: 20px;
     text-align: center;
-    min-width: 300px;
+    min-width: 250px;
+  }
+
+  h1 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  input {
+    width: 100%;
+    padding: 6px;
+    margin: 6px 0;
+    background: black;
+    border: 1px solid white;
+    color: white;
+  }
+
+  button {
+    padding: 6px 12px;
+    background: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+
+  button:hover {
+    background: gray;
   }
 </style>
 </head>
 <body>
 
-<div class="login-box">
+<div class="login-box" id="loginStep1">
   <h1>Login</h1>
-  <!-- Add form here later -->
+  <input type="text" placeholder="Username" id="username">
+  <input type="password" placeholder="Password" id="password">
+  <button onclick="goToStep2()">Next</button>
 </div>
+
+<div class="login-box" id="loginStep2" style="display:none;">
+  <h1>Two-Step Verification</h1>
+  <p>Enter the code from your authenticator app:</p>
+  <input type="text" placeholder="123456" id="authCode">
+  <button onclick="finishLogin()">Verify</button>
+</div>
+
+<script>
+  function goToStep2() {
+    document.getElementById('loginStep1').style.display = 'none';
+    document.getElementById('loginStep2').style.display = 'block';
+  }
+
+  function finishLogin() {
+    const code = document.getElementById('authCode').value;
+    if (code === "123456") { // Mock check
+      alert("Login successful!");
+      window.location.href = "dashboard.html"; // Replace with your page
+    } else {
+      alert("Invalid code. Try again.");
+    }
+  }
+</script>
 
 </body>
 </html>
