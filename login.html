@@ -3,87 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - Cazrath</title>
+<title>Void Gate Access</title>
 <style>
   body {
     margin: 0;
-    background: black;
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh;
+    display: flex;
+    background: #000;
     color: white;
-    font-family: Arial, sans-serif;
+  }
+
+  /* Realm Return Chamber */
+  .left-panel {
+    width: 60%;
+    background: url('your-image.jpg') center/cover no-repeat;
+    position: relative;
+  }
+
+  /* Realm Return Sigil */
+  .realm-return {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #9f7fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #9f7fff;
+  }
+
+  /* Gate Control Side */
+  .right-panel {
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    background: #0a0a0a;
   }
 
-  .login-box {
-    border: 1px solid white;
-    padding: 15px;
+  /* Void Gate Interface */
+  .void-gate {
+    background: rgba(20, 20, 20, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    width: 70%;
+    box-shadow: 0 0 20px rgba(159, 127, 255, 0.4);
+  }
+
+  /* Gate Title */
+  .gate-title {
     text-align: center;
-    width: 220px; /* Slimmer width */
+    margin-bottom: 20px;
+    color: #9f7fff;
+    font-size: 1.5em;
+    text-shadow: 0 0 15px #9f7fff;
   }
 
-  h1 {
-    font-size: 16px;
-    margin-bottom: 10px;
+  /* Sigil & Lock Labels */
+  .sigil-label, .lock-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #bbb;
+    letter-spacing: 0.5px;
   }
 
-  input {
+  /* Input Fields (Void Sigil & Void Lock) */
+  .void-input {
     width: 100%;
-    padding: 5px;
-    margin: 5px 0;
-    background: black;
-    border: 1px solid white;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    background: #111;
     color: white;
     font-size: 14px;
+    box-shadow: inset 0 0 5px #9f7fff;
   }
 
-  button {
-    padding: 5px 10px;
-    font-size: 14px;
-    background: white;
+  /* Unlock the Void Button */
+  .void-unlock {
+    width: 100%;
+    padding: 10px;
+    background: #9f7fff;
     color: black;
+    font-weight: bold;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
-  button:hover {
-    background: gray;
+  .void-unlock:hover {
+    background: #b399ff;
+    box-shadow: 0 0 15px #9f7fff;
   }
 </style>
 </head>
 <body>
 
-<div class="login-box" id="loginStep1">
-  <h1>Login</h1>
-  <input type="text" placeholder="Username" id="username">
-  <input type="password" placeholder="Password" id="password">
-  <button onclick="goToStep2()">Next</button>
+<!-- Realm Return Chamber -->
+<div class="left-panel">
+  <a href="index.html" class="realm-return">Return to Realm</a>
 </div>
 
-<div class="login-box" id="loginStep2" style="display:none;">
-  <h1>Two-Step Verification</h1>
-  <input type="text" placeholder="123456" id="authCode">
-  <button onclick="finishLogin()">Verify</button>
+<!-- Gate Control Side -->
+<div class="right-panel">
+  <div class="void-gate">
+    <h2 class="gate-title">Void Gate Access</h2>
+    <form>
+      <label for="sigil" class="sigil-label">Void Sigil</label>
+      <input type="text" id="sigil" name="sigil" class="void-input" required>
+
+      <label for="lock" class="lock-label">Void Lock</label>
+      <input type="password" id="lock" name="lock" class="void-input" required>
+
+      <button type="submit" class="void-unlock">Unlock the Void</button>
+    </form>
+  </div>
 </div>
-
-<script>
-  function goToStep2() {
-    document.getElementById('loginStep1').style.display = 'none';
-    document.getElementById('loginStep2').style.display = 'block';
-  }
-
-  function finishLogin() {
-    const code = document.getElementById('authCode').value;
-    if (code === "123456") {
-      alert("Login successful!");
-      window.location.href = "dashboard.html";
-    } else {
-      alert("Invalid code. Try again.");
-    }
-  }
-</script>
 
 </body>
 </html>
