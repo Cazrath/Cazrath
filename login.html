@@ -3,127 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Void Gate Access</title>
+<title>Gate Key Input</title>
 <style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    height: 100vh;
-    display: flex;
-    background: #000;
-    color: white;
-  }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #0a0a0a;
+        color: #fff;
+        display: flex;
+        height: 100vh;
+    }
 
-  /* Realm Return Chamber */
-  .left-panel {
-    width: 60%;
-    background: url('https://i.pinimg.com/1200x/5a/fd/78/5afd78e6bb638485fa25cec303b0a560.jpg') center/cover no-repeat;
-    position: relative;
-  }
+    /* Left Panel (Image) */
+    .left-panel {
+        flex: 2;
+        background: url('your-image.jpg') center/cover no-repeat;
+    }
 
-  /* Realm Return Sigil */
-  .realm-return {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    color: #9f7fff;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    text-shadow: 0 0 10px #9f7fff;
-  }
+    /* Right Panel (Login) */
+    .right-panel {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #0f0f0f;
+        padding: 40px;
+    }
 
-  /* Gate Control Side */
-  .right-panel {
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #0a0a0a;
-  }
+    .back-link {
+        position: absolute;
+        top: 20px;
+        left: auto;
+        right: 40px;
+        color: #aaa;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
 
-  /* Void Gate Interface */
-  .void-gate {
-    background: rgba(20, 20, 20, 0.9);
-    padding: 30px;
-    border-radius: 10px;
-    width: 70%;
-    box-shadow: 0 0 20px rgba(159, 127, 255, 0.4);
-  }
+    .back-link:hover {
+        color: #fff;
+    }
 
-  /* Gate Title */
-  .gate-title {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #9f7fff;
-    font-size: 1.5em;
-    text-shadow: 0 0 15px #9f7fff;
-  }
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        text-align: center;
+    }
 
-  /* Sigil & Lock Labels */
-  .sigil-label, .lock-label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 14px;
-    color: #bbb;
-    letter-spacing: 0.5px;
-  }
+    .login-form {
+        width: 80%;
+        max-width: 300px;
+        display: flex;
+        flex-direction: column;
+    }
 
-  /* Input Fields (Void Sigil & Void Lock) */
-  .void-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 5px;
-    background: #111;
-    color: white;
-    font-size: 14px;
-    box-shadow: inset 0 0 5px #9f7fff;
-  }
+    input {
+        padding: 12px;
+        margin-bottom: 15px;
+        border: none;
+        border-radius: 4px;
+        background-color: #1a1a1a;
+        color: #fff;
+        font-size: 0.95rem;
+    }
 
-  /* Unlock the Void Button */
-  .void-unlock {
-    width: 100%;
-    padding: 10px;
-    background: #9f7fff;
-    color: black;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
+    input::placeholder {
+        color: #666;
+    }
 
-  .void-unlock:hover {
-    background: #b399ff;
-    box-shadow: 0 0 15px #9f7fff;
-  }
+    button {
+        padding: 12px;
+        background-color: #222;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #333;
+    }
 </style>
 </head>
 <body>
 
-<!-- Realm Return Chamber -->
-<div class="left-panel">
-  <a href="index.html" class="realm-return">Return to Realm</a>
-</div>
+    <!-- Left Image Panel -->
+    <div class="left-panel"></div>
 
-<!-- Gate Control Side -->
-<div class="right-panel">
-  <div class="void-gate">
-    <h2 class="gate-title">Void Gate Access</h2>
-    <form>
-      <label for="sigil" class="sigil-label">Void Sigil</label>
-      <input type="text" id="sigil" name="sigil" class="void-input" required>
-
-      <label for="lock" class="lock-label">Void Lock</label>
-      <input type="password" id="lock" name="lock" class="void-input" required>
-
-      <button type="submit" class="void-unlock">Unlock the Void</button>
-    </form>
-  </div>
-</div>
+    <!-- Right Login Panel -->
+    <div class="right-panel">
+        <a href="/" class="back-link">Return to Realm</a>
+        <h1>Gate Key Input</h1>
+        <form class="login-form">
+            <input type="text" placeholder="Void Sigil" required>
+            <input type="password" placeholder="Void Lock" required>
+            <button type="submit">Unlock the Void</button>
+        </form>
+    </div>
 
 </body>
 </html>
