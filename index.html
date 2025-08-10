@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cazrath</title>
+<style>
+  body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Logo */
+  .logo {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 40px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  /* Dropdown */
+  .dropdown {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    background: black;
+    color: white;
+    border: 2px solid white;
+    padding: 10px;
+    display: none;
+    min-width: 150px;
+  }
+
+  .dropdown.show {
+    display: block;
+  }
+
+  .dropdown-item {
+    padding: 8px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .dropdown-item:hover {
+    background: white;
+    color: black;
+  }
+</style>
+</head>
+<body>
+
+<!-- Logo -->
+<div id="logo" class="logo">ℭ</div>
+
+<!-- Dropdown -->
+<div id="dropdown" class="dropdown">
+  <div class="dropdown-item" onclick="goToLogin()">Login</div>
+</div>
+
+<script>
+  const logo = document.getElementById('logo');
+  const dropdown = document.getElementById('dropdown');
+
+  // Toggle dropdown
+  logo.addEventListener('click', () => {
+    dropdown.classList.toggle('show');
+  });
+
+  // Redirect to login page
+  function goToLogin() {
+    window.location.href = 'login.html';
+  }
+</script>
+
+</body>
+</html>
