@@ -1,108 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gate Key Input</title>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: #0a0a0a;
-        color: #fff;
-        display: flex;
-        height: 100vh;
-    }
-
-    /* Left Panel (Image) */
-    .left-panel {
-        flex: 2;
-        background: url('QWERD') center/cover no-repeat;
-    }
-
-    /* Right Panel (Login) */
-    .right-panel {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #0f0f0f;
-        padding: 40px;
-    }
-
-    .back-link {
-        position: absolute;
-        top: 20px;
-        left: auto;
-        right: 40px;
-        color: #aaa;
-        text-decoration: none;
-        font-size: 0.9rem;
-    }
-
-    .back-link:hover {
-        color: #fff;
-    }
-
-    h1 {
-        font-size: 1.5rem;
-        margin-bottom: 30px;
-        text-align: center;
-    }
-
-    .login-form {
-        width: 80%;
-        max-width: 300px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    input {
-        padding: 12px;
-        margin-bottom: 15px;
-        border: none;
-        border-radius: 4px;
-        background-color: #1a1a1a;
-        color: #fff;
-        font-size: 0.95rem;
-    }
-
-    input::placeholder {
-        color: #666;
-    }
-
-    button {
-        padding: 12px;
-        background-color: #222;
-        border: none;
-        border-radius: 4px;
-        color: #fff;
-        font-size: 1rem;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background-color: #333;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Cazrath</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Left Image Panel -->
-    <div class="left-panel"></div>
-
-    <!-- Right Login Panel -->
-    <div class="right-panel">
-        <a href="/" class="back-link">Return to Realm</a>
-        <h1>Gate Key Input</h1>
-        <form class="login-form">
-            <input type="text" placeholder="Void Sigil" required>
-            <input type="password" placeholder="Void Lock" required>
-            <button type="submit">Unlock the Void</button>
-        </form>
+    <div class="login-container">
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p id="error"></p>
     </div>
 
+    <script src="script.js"></script>
 </body>
 </html>
