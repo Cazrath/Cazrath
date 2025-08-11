@@ -1,84 +1,69 @@
 body {
     margin: 0;
-    padding: 0;
-    background-color: #0a0a0a;
+    font-family: Arial, sans-serif;
+    background-color: #0d0d0d;
     color: white;
-    font-family: 'Segoe UI', sans-serif;
 }
 
-.login-container {
+.return-top-left {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+}
+
+.container {
     display: flex;
     height: 100vh;
 }
 
-/* Left side 60% */
-.left-side {
-    flex: 6;
-    background-color: black;
+.welcome-section {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.left-side h1 {
-    font-size: 3rem;
-    font-weight: bold;
-}
-
-/* Divider line */
-.divider {
-    width: 1px;
-    background-color: #444;
-}
-
-/* Right side 40% */
-.right-side {
-    flex: 4;
-    background-color: #111;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0 40px;
-}
-
-.right-side h2 {
-    margin-bottom: 20px;
     font-size: 2rem;
     font-weight: bold;
 }
 
-.right-side form {
-    width: 100%;
+.login-section {
+    flex: 1;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 400px;
+    margin: auto;
 }
 
-.right-side input {
-    background-color: black;
-    border: 1px solid #555;
+.login-section h2 {
+    margin-bottom: 20px;
+}
+
+.login-section input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    background: black;
+    border: 1px solid white;
     color: white;
-    padding: 12px;
-    margin-bottom: 15px;
-    font-size: 1rem;
 }
 
-.right-side input::placeholder {
-    color: #888;
-}
-
-.right-side button {
-    background-color: white;
-    color: black;
+.login-section button {
+    width: 100%;
+    padding: 10px;
+    background: white;
     border: none;
-    padding: 12px;
-    cursor: pointer;
-    font-size: 1rem;
+    color: black;
     font-weight: bold;
+    cursor: pointer;
 }
 
-.right-side a {
+.forgot-link {
     margin-top: 10px;
-    color: #aaa;
-    text-decoration: none;
+    font-size: 14px;
+    color: #bbb;
+    cursor: pointer;
 }
