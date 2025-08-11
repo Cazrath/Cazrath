@@ -1,24 +1,99 @@
-.sidebar button {
-    display: block;
-    width: 100%;
-    padding: 12px 20px;
-    margin-bottom: 8px;
-    background: #111;
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', serif;
+}
+
+/* Black background + white text */
+body {
+    background-color: black;
     color: white;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
+}
+
+/* Centering title on homepage */
+.center-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.title {
+    font-size: 4rem;
+}
+
+/* Top right ℭ logo */
+.login-logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+}
+
+/* LOGIN PAGE STYLING */
+.login-body {
+    display: flex;
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    width: 100%;
+}
+
+/* Left side - 60% */
+.login-left {
+    width: 60%;
+    background-color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+/* Right side - 40% */
+.login-right {
+    width: 40%;
+    background-color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-right form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.login-right label {
+    margin-top: 10px;
+}
+
+.login-right input {
+    margin: 5px 0 15px;
+    padding: 10px;
+    background: black;
+    border: 1px solid white;
+    color: white;
+}
+
+.login-right button {
+    padding: 10px;
+    background: white;
+    color: black;
     border: none;
     cursor: pointer;
-    text-align: left;
-    transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.sidebar button:hover {
-    background: #222;
-    transform: translateX(5px);
-}
-
-.sidebar button.active {
-    background: #333;
-    font-weight: bold;
+.login-right a {
+    margin-top: 10px;
+    color: white;
+    text-decoration: underline;
+    font-size: 0.9rem;
 }
