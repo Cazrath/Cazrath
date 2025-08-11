@@ -1,33 +1,24 @@
-body {
-    background: white;
-    color: black;
-    font-family: Arial, sans-serif;
-    text-align: center;
-}
-
-.login-container {
-    max-width: 300px;
-    margin: 100px auto;
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 10px;
-}
-
-input {
+.sidebar button {
     display: block;
-    margin: 10px auto;
-    padding: 10px;
-    width: 90%;
-}
-
-button {
-    padding: 10px;
-    background: black;
+    width: 100%;
+    padding: 12px 20px;
+    margin-bottom: 8px;
+    background: #111;
     color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
     border: none;
     cursor: pointer;
+    text-align: left;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
-button:hover {
-    background: gray;
+.sidebar button:hover {
+    background: #222;
+    transform: translateX(5px);
+}
+
+.sidebar button.active {
+    background: #333;
+    font-weight: bold;
 }
