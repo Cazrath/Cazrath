@@ -1,77 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cazrath</title>
-<style>
-  body {
-    margin: 0;
-    background: black;
-    color: white;
-    font-family: Arial, sans-serif;
-  }
-
-  /* Logo */
-  .logo {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    font-size: 24px;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  /* Dropdown */
-  .dropdown {
-    position: fixed;
-    top: 50px;
-    right: 15px;
-    background: black;
-    color: white;
-    border: 1px solid white;
-    display: none;
-    min-width: 100px;
-    text-align: center;
-  }
-
-  .dropdown.show {
-    display: block;
-  }
-
-  .dropdown-item {
-    padding: 6px 0;
-    cursor: pointer;
-  }
-
-  .dropdown-item:hover {
-    background: white;
-    color: black;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cazrath</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="checkLogin()">
 
-<!-- Logo -->
-<div id="logo" class="logo">ℭ</div>
+    <!-- Top Right Logo -->
+    <div style="position: absolute; top: 10px; right: 10px;">
+        <button id="cLogo" onclick="toggleDropdown()">ℭ</button>
+        <div id="dropdown" style="display:none; background:white; border:1px solid black; position:absolute; right:0;">
+            <a href="#">Dashboard</a><br>
+            <a href="#">Customize</a><br>
+            <a href="#">The Frames I Kept</a><br>
+            <a href="#">Malzreth Realm</a><br>
+            <a href="#">Settings</a><br>
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+    </div>
 
-<!-- Dropdown -->
-<div id="dropdown" class="dropdown">
-  <div class="dropdown-item" onclick="goToLogin()">Login</div>
-</div>
+    <h1>ℭ𝔞𝔷𝔯𝔞𝔱𝔥</h1>
+    <p>𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰...</p>
 
-<script>
-  const logo = document.getElementById('logo');
-  const dropdown = document.getElementById('dropdown');
-
-  logo.addEventListener('click', () => {
-    dropdown.classList.toggle('show');
-  });
-
-  function goToLogin() {
-    window.location.href = 'login.html';
-  }
-</script>
-
+    <script src="script.js"></script>
+    <script>
+        function toggleDropdown() {
+            let drop = document.getElementById("dropdown");
+            drop.style.display = drop.style.display === "none" ? "block" : "none";
+        }
+    </script>
 </body>
 </html>
