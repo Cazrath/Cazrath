@@ -1,100 +1,82 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook&display=swap" rel="stylesheet">
-  <style>
-    body {margin:0; background:#fff; color:#000; font-family:serif; text-align:center;}
-    header {display:flex; justify-content:flex-end; padding:18px 28px;}
-    .logo-btn{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:2px solid #000;cursor:pointer;font-weight:700;}
-    .hero-title{font-family:'UnifrakturCook',serif;font-size:64px;margin:0;}
-    .quote{margin-top:10px; font-size:16px;}
-    .info-list{margin-top:30px; text-align:left; display:inline-block; font-size:16px; line-height:1.6;}
-    /* login modal */
-    .modal-backdrop{position:fixed;inset:0;display:none;background:rgba(0,0,0,0.5);align-items:center;justify-content:center}
-    .modal{background:#fff;border:1px solid #000;padding:22px;border-radius:8px;max-width:420px;width:94%;text-align:left;}
-    .field{margin:10px 0;}
-    .field input{padding:10px;border:1px solid #000;width:100%;border-radius:4px;}
-    .btn{padding:10px 14px;border-radius:6px;border:0;cursor:pointer}
-    .btn.primary{background:#000;color:#fff}
-    .btn.ghost{background:transparent;border:1px solid #000}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cazrath</title>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Top right C logo */
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 70px; /* bigger */
+            height: 70px; /* bigger */
+            border: 2px solid black;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px; /* bigger C */
+            cursor: pointer;
+        }
+
+        /* Title + quote */
+        .title {
+            margin-top: 40px; /* moved up */
+            font-size: 48px;
+            text-align: center;
+        }
+
+        .quote {
+            margin-top: 10px;
+            font-size: 20px;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        /* Bio lines */
+        .bio {
+            margin-top: 40px;
+            text-align: left; /* align text left */
+            transform: translateX(-40px); /* shifted left */
+            font-size: 18px;
+            line-height: 1.8;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <button id="logoBtn" class="logo-btn" aria-label="Open login / menu">ℭ</button>
-  </header>
 
-  <main>
-    <h1 class="hero-title">ℭ𝔞𝔷𝔯𝔞𝔱𝔥</h1>
-    <div class="quote">𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.</div>
-    <div class="info-list">
-      ⟢ Vein.Name : Nu’man Anis Ahmed Ansari<br>
-      ⟢ Age.Sigil : XXII.𝘴𝘵𝘪𝘭𝘭.𝘸𝘢𝘭𝘬𝘪𝘯𝘨<br>
-      ⟢ Depth.Scan : survived.unseen<br>
-      ⟢ Bound.To : what's left<br>
-      ⟢ Drift.ID : 0xCZRTH
+    <!-- Top right C logo -->
+    <div class="logo-container">ℭ</div>
+
+    <!-- Title + Quote -->
+    <div class="title">ℭ𝔞𝔷𝔯𝔞𝔱𝔥</div>
+    <div class="quote">
+        𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 
+        𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.
     </div>
-  </main>
 
-  <!-- login modal -->
-  <div id="backdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal" role="document">
-      <h3>Login</h3>
-      <div class="field">
-        <label></label>
-        <input id="username" placeholder="Void Sigil" />
-      </div>
-      <div class="field">
-        <label></label>
-        <input id="password" type="password" placeholder="Void Lock" />
-      </div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
-        <button id="cancelLogin" class="btn ghost">Cancel</button>
-        <button id="doLogin" class="btn primary">Login</button>
-      </div>
+    <!-- Bio section -->
+    <div class="bio">
+        ⟢ Vein.Name : Nu’man Anis Ahmed Ansari<br>
+        ⟢ Age.Sigil : XXII.𝘴𝘵𝘪𝘭𝘭.𝘸𝘢𝘭𝘬𝘪𝘯𝘨<br>
+        ⟢ Depth.Scan : survived.unseen<br>
+        ⟢ Bound.To : what's left<br>
+        ⟢ Drift.ID : 0xCZRTH
     </div>
-  </div>
 
-  <script>
-    const logoBtn = document.getElementById('logoBtn');
-    const backdrop = document.getElementById('backdrop');
-    const doLogin = document.getElementById('doLogin');
-    const cancelLogin = document.getElementById('cancelLogin');
-
-    let isLoggedIn = false;
-
-    function openLogin(){
-      backdrop.style.display = 'flex';
-      backdrop.setAttribute('aria-hidden','false');
-      document.getElementById('username').focus();
-    }
-    function closeLogin(){
-      backdrop.style.display = 'none';
-      backdrop.setAttribute('aria-hidden','true');
-    }
-
-    logoBtn.addEventListener('click', ()=>{
-      if(!isLoggedIn) openLogin();
-      else window.location.href = 'menu.html';
-    });
-
-    cancelLogin.addEventListener('click', closeLogin);
-    backdrop.addEventListener('click', (e)=>{ if(e.target===backdrop) closeLogin(); });
-
-    doLogin.addEventListener('click', ()=>{
-      const u = document.getElementById('username').value.trim();
-      const p = document.getElementById('password').value;
-      if(u === 'Cazrath' && p === 'Ayesha'){
-        isLoggedIn = true;
-        closeLogin();
-        window.location.href = 'menu.html';
-      } else {
-        alert('Login failed. Try username: Cazrath  password: Ayesha');
-      }
-    });
-  </script>
 </body>
 </html>
