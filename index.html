@@ -4,140 +4,58 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:ital@0;1&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#ffffff; --fg:#000000; --muted:#666666; --accent-size:72px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-
-    /* Layout */
-    .wrap{min-height:100%;display:flex;flex-direction:column}
-    header{display:flex;justify-content:flex-end;padding:18px 28px}
-
-    /* logo/button */
-    .logo-btn{width:48px;height:48px;border-radius:50%;display:inline-grid;place-items:center;border:2px solid var(--fg);cursor:pointer;font-weight:700}
-    .logo-btn:focus{outline:3px solid rgba(0,0,0,0.06)}
-
-    /* Center landing area */
-    main{flex:1;display:grid;place-items:center;padding:32px}
-    .hero{max-width:900px;text-align:center}
-    .title{font-family:UnifrakturCook,serif;font-size:64px;letter-spacing:6px;margin:0}
-    .quote{margin-top:18px;color:var(--muted);font-size:16px;line-height:1.5;white-space:pre-wrap}
-
-    /* small caption under quote */
-    .sub{margin-top:22px;font-size:13px;color:var(--muted)}
-
-    /* Login modal */
+    body {margin:0; background:#fff; color:#000; font-family:serif; text-align:center;}
+    header {display:flex; justify-content:flex-end; padding:18px 28px;}
+    .logo-btn{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:2px solid #000;cursor:pointer;font-weight:700;}
+    .hero-title{font-family:'UnifrakturCook',serif;font-size:64px;margin:0;}
+    .quote{margin-top:10px; font-size:16px;}
+    .info-list{margin-top:30px; text-align:left; display:inline-block; font-size:16px; line-height:1.6;}
+    /* login modal */
     .modal-backdrop{position:fixed;inset:0;display:none;background:rgba(0,0,0,0.5);align-items:center;justify-content:center}
-    .modal{background:var(--bg);border:1px solid #111;padding:22px;border-radius:8px;max-width:420px;width:94%}
-    .modal h3{margin:0 0 8px 0}
-    .field{display:flex;flex-direction:column;margin:10px 0}
-    .field input{padding:10px;border:1px solid #ddd;border-radius:6px}
-    .hint{font-size:12px;color:var(--muted)}
+    .modal{background:#fff;border:1px solid #000;padding:22px;border-radius:8px;max-width:420px;width:94%;text-align:left;}
+    .field{margin:10px 0;}
+    .field input{padding:10px;border:1px solid #000;width:100%;border-radius:4px;}
     .btn{padding:10px 14px;border-radius:6px;border:0;cursor:pointer}
     .btn.primary{background:#000;color:#fff}
     .btn.ghost{background:transparent;border:1px solid #000}
-
-    /* customization panel (drawer) */
-    .drawer{position:fixed;right:0;top:0;bottom:0;width:380px;background:var(--bg);border-left:1px solid #111;transform:translateX(110%);transition:transform .28s ease;display:flex;flex-direction:column}
-    .drawer.open{transform:translateX(0)}
-    .drawer .head{padding:18px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:12px}
-    .avatar-circle{width:44px;height:44px;border-radius:50%;border:2px solid #000;display:grid;place-items:center;font-weight:700}
-    .sidebar{padding:8px 12px;display:flex;flex-direction:column;gap:6px}
-    .side-item{padding:10px;border-radius:8px;cursor:pointer}
-    .side-item.active{background:#f6f6f6;border:1px solid #e5e5e5}
-    .panel-body{padding:12px;flex:1;overflow:auto}
-
-    /* responsive tweaks */
-    @media (max-width:600px){.title{font-size:42px}.drawer{width:100%}}
-
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <button id="logoBtn" class="logo-btn" aria-label="Open login / customize">ℭ</button>
-    </header>
+  <header>
+    <button id="logoBtn" class="logo-btn" aria-label="Open login / menu">ℭ</button>
+  </header>
 
-    <main>
-      <section class="hero" aria-labelledby="hero-title">
-        <h1 id="hero-title" class="title">ℭ𝔞𝔷𝔯𝔞𝔱𝔥</h1>
-        <div class="quote">“Even if the sky falls, the soul it feared most — Cazrath — will still be standing where gravity ends.”</div>
-        <div class="sub">Black & white theme · Centered · Circular ℭ logo acts as login/customize button</div>
-      </section>
-    </main>
+  <main>
+    <h1 class="hero-title">ℭ𝔞𝔷𝔯𝔞𝔱𝔥</h1>
+    <div class="quote">𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.</div>
+    <div class="info-list">
+      ⟢ Vein.Name : Nu’man Anis Ahmed Ansari<br>
+      ⟢ Age.Sigil : XXII.𝘴𝘵𝘪𝘭𝘭.𝘸𝘢𝘭𝘬𝘪𝘯𝘨<br>
+      ⟢ Depth.Scan : survived.unseen<br>
+      ⟢ Bound.To : what's left<br>
+      ⟢ Drift.ID : 0xCZRTH
+    </div>
+  </main>
 
-    <!-- login modal -->
-    <div id="backdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
-      <div class="modal" role="document">
-        <h3>Login</h3>
-        <div class="field">
-          <label>Username</label>
-          <input id="username" placeholder="Cazrath" />
-        </div>
-        <div class="field">
-          <label>Password</label>
-          <input id="password" type="password" placeholder="Ayesha" />
-        </div>
-        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
-          <button id="cancelLogin" class="btn ghost">Cancel</button>
-          <button id="doLogin" class="btn primary">Login</button>
-        </div>
-        <p class="hint" style="margin-top:10px">Hint: default credentials — <strong>Cazrath</strong> / <strong>Ayesha</strong></p>
+  <!-- login modal -->
+  <div id="backdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <h3>Login</h3>
+      <div class="field">
+        <label></label>
+        <input id="username" placeholder="Void Sigil" />
+      </div>
+      <div class="field">
+        <label></label>
+        <input id="password" type="password" placeholder="Void Lock" />
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+        <button id="cancelLogin" class="btn ghost">Cancel</button>
+        <button id="doLogin" class="btn primary">Login</button>
       </div>
     </div>
-
-    <!-- customization drawer -->
-    <aside id="drawer" class="drawer" aria-hidden="true">
-      <div class="head">
-        <div class="avatar-circle">ℭ</div>
-        <div>
-          <div style="font-weight:700">Vein.Name: Nu'man Anis Ahmed Ansari</div>
-          <div style="font-size:12px;color:var(--muted)">Logged in</div>
-        </div>
-      </div>
-
-      <nav class="sidebar" role="navigation" aria-label="Customize sidebar">
-        <div data-key="Identity.Config" class="side-item active">⟢ Identity.Config : text.core.editor</div>
-        <div data-key="Echo.Vault" class="side-item">⟢ Echo.Vault : audio.layers</div>
-        <div data-key="Interface.Mast" class="side-item">⟢ Interface.Mast : font.cursor.effects</div>
-        <div data-key="Ash.Script" class="side-item">⟢ Ash.Script : custom.note.space</div>
-        <div data-key="Veil.Connect" class="side-item">⟢ Veil.Connect : social.connection.grid</div>
-      </nav>
-
-      <div class="panel-body" id="panelBody">
-        <!-- dynamic content injected here -->
-        <section id="Identity.Config" class="panel">
-          <h4>Identity.Config</h4>
-          <p class="hint">Customize your name, tagline, and quote lines.</p>
-          <div style="margin-top:10px">
-            <label>Label (eg. Vein.Name)</label>
-            <input id="labelInput" value="Vein.Name" style="width:100%;padding:8px;margin-top:6px;border-radius:6px;border:1px solid #ddd" />
-          </div>
-          <div style="margin-top:10px">
-            <label>Full name</label>
-            <input id="fullnameInput" value="Nu'man Anis Ahmed Ansari" style="width:100%;padding:8px;margin-top:6px;border-radius:6px;border:1px solid #ddd" />
-          </div>
-          <div style="margin-top:10px">
-            <label>Quote</label>
-            <textarea id="quoteInput" rows="4" style="width:100%;padding:8px;margin-top:6px;border-radius:6px;border:1px solid #ddd">Even if the sky falls, the soul it feared most — Cazrath — will still be standing where gravity ends.</textarea>
-          </div>
-          <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
-            <button id="saveIdentity" class="btn primary">Save</button>
-            <button id="revertIdentity" class="btn ghost">Revert</button>
-          </div>
-        </section>
-
-      </div>
-
-      <div style="padding:12px;border-top:1px solid #efefef;display:flex;gap:8px;justify-content:space-between">
-        <button id="logoutBtn" class="btn ghost">Logout</button>
-        <div style="font-size:12px;color:var(--muted)">There Is Nothing You Can Do.</div>
-      </div>
-    </aside>
-
   </div>
 
   <script>
@@ -145,15 +63,7 @@
     const backdrop = document.getElementById('backdrop');
     const doLogin = document.getElementById('doLogin');
     const cancelLogin = document.getElementById('cancelLogin');
-    const drawer = document.getElementById('drawer');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const sideItems = document.querySelectorAll('.side-item');
-    const panelBody = document.getElementById('panelBody');
-    const labelInput = document.getElementById('labelInput');
-    const fullnameInput = document.getElementById('fullnameInput');
-    const quoteInput = document.getElementById('quoteInput');
 
-    // simple simulated auth state
     let isLoggedIn = false;
 
     function openLogin(){
@@ -168,7 +78,7 @@
 
     logoBtn.addEventListener('click', ()=>{
       if(!isLoggedIn) openLogin();
-      else toggleDrawer(true);
+      else window.location.href = 'menu.html';
     });
 
     cancelLogin.addEventListener('click', closeLogin);
@@ -177,72 +87,14 @@
     doLogin.addEventListener('click', ()=>{
       const u = document.getElementById('username').value.trim();
       const p = document.getElementById('password').value;
-      // default credentials per project notes
       if(u === 'Cazrath' && p === 'Ayesha'){
         isLoggedIn = true;
         closeLogin();
-        toggleDrawer(true);
+        window.location.href = 'menu.html';
       } else {
         alert('Login failed. Try username: Cazrath  password: Ayesha');
       }
     });
-
-    function toggleDrawer(open){
-      if(open){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); }
-      else { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); }
-    }
-
-    // sidebar switching
-    sideItems.forEach(it=>{
-      it.addEventListener('click', ()=>{
-        sideItems.forEach(s=>s.classList.remove('active'));
-        it.classList.add('active');
-        const key = it.dataset.key;
-        showPanel(key);
-      });
-    });
-
-    function showPanel(key){
-      // For now only Identity.Config exists as a panel in this starter file
-      // Clear and add content based on key (extendable)
-      const panels = { 'Identity.Config': document.getElementById('Identity.Config') };
-      panelBody.querySelectorAll('.panel').forEach(p=>p.remove());
-      if(panels[key]) panelBody.appendChild(panels[key]);
-      else {
-        const el = document.createElement('section'); el.className = 'panel';
-        el.innerHTML = `<h4>${key}</h4><p class=\"hint\">This panel is a placeholder. More features can be added here.</p>`;
-        panelBody.appendChild(el);
-      }
-    }
-
-    // Save identity changes to page (live update)
-    document.getElementById('saveIdentity').addEventListener('click', ()=>{
-      const title = document.getElementById('hero-title');
-      title.textContent = labelInput.value === 'Vein.Name' ? 'ℭ𝔞𝔷𝔯𝔞𝔱𝔥' : labelInput.value;
-      document.querySelector('.quote').textContent = quoteInput.value;
-      // fake persist by storing in localStorage
-      localStorage.setItem('cazrath_label', labelInput.value);
-      localStorage.setItem('cazrath_fullname', fullnameInput.value);
-      localStorage.setItem('cazrath_quote', quoteInput.value);
-      alert('Saved (locally).');
-    });
-
-    document.getElementById('revertIdentity').addEventListener('click', ()=>{
-      labelInput.value = 'Vein.Name';
-      fullnameInput.value = "Nu'man Anis Ahmed Ansari";
-      quoteInput.value = 'Even if the sky falls, the soul it feared most — Cazrath — will still be standing where gravity ends.';
-    });
-
-    logoutBtn.addEventListener('click', ()=>{
-      isLoggedIn = false; toggleDrawer(false); alert('Logged out. There Is Nothing You Can Do.');
-    });
-
-    // init from localStorage if available
-    (function initFromStorage(){
-      const q = localStorage.getItem('cazrath_quote');
-      if(q){ document.querySelector('.quote').textContent = q; }
-    })();
-
   </script>
 </body>
 </html>
