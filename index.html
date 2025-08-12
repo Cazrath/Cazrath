@@ -12,70 +12,77 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         /* Top right C logo */
         .logo-container {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 70px; /* bigger */
-            height: 70px; /* bigger */
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
             border: 2px solid black;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 36px; /* bigger C */
+            font-size: 20px;
             cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+        }
+        .logo-container:hover {
+            background: black;
+            color: white;
         }
 
-        /* Title + quote */
-        .title {
-            margin-top: 40px; /* moved up */
-            font-size: 48px;
+        /* Centered content */
+        .content {
             text-align: center;
+            margin-top: 80px;
+        }
+
+        .title {
+            font-size: 48px;
         }
 
         .quote {
             margin-top: 10px;
             font-size: 20px;
-            text-align: center;
             max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Bio lines */
+        /* Bio lines aligned left but close to quote */
         .bio {
-            margin-top: 40px;
-            text-align: left; /* align text left */
-            transform: translateX(-40px); /* shifted left */
+            margin-top: 20px;
+            text-align: left;
             font-size: 18px;
             line-height: 1.8;
+            display: inline-block;
         }
     </style>
 </head>
 <body>
 
-    <!-- Top right C logo -->
-    <div class="logo-container">ℭ</div>
+    <!-- Top right C logo (clickable) -->
+    <div class="logo-container" onclick="window.location.href='login.html'">ℭ</div>
 
-    <!-- Title + Quote -->
-    <div class="title">ℭ𝔞𝔷𝔯𝔞𝔱𝔥</div>
-    <div class="quote">
-        𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 
-        𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.
-    </div>
-
-    <!-- Bio section -->
-    <div class="bio">
-        ⟢ Vein.Name : Nu’man Anis Ahmed Ansari<br>
-        ⟢ Age.Sigil : XXII.𝘴𝘵𝘪𝘭𝘭.𝘸𝘢𝘭𝘬𝘪𝘯𝘨<br>
-        ⟢ Depth.Scan : survived.unseen<br>
-        ⟢ Bound.To : what's left<br>
-        ⟢ Drift.ID : 0xCZRTH
+    <!-- All text content -->
+    <div class="content">
+        <div class="title">ℭ𝔞𝔷𝔯𝔞𝔱𝔥</div>
+        <div class="quote">
+            𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 
+            𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.
+        </div>
+        <div class="bio">
+            ⟢ Vein.Name : Nu’man Anis Ahmed Ansari<br>
+            ⟢ Age.Sigil : XXII.𝘴𝘵𝘪𝘭𝘭.𝘸𝘢𝘭𝘬𝘪𝘯𝘨<br>
+            ⟢ Depth.Scan : survived.unseen<br>
+            ⟢ Bound.To : what's left<br>
+            ⟢ Drift.ID : 0xCZRTH
+        </div>
     </div>
 
 </body>
