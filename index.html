@@ -54,7 +54,7 @@
     color: white;
   }
 
-  /* Popup overlay base */
+  /* Login popup styles (unchanged) */
   .popup-overlay {
     position: fixed;
     top: 0;
@@ -62,13 +62,11 @@
     width: 100vw;
     height: 100vh;
     background: rgba(0,0,0,0.5);
-    display: none; /* hidden by default */
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 2000;
   }
-
-  /* Login popup */
   .popup {
     background: white;
     padding: 30px 40px;
@@ -129,23 +127,30 @@
     color: #555;
   }
 
-  /* Menu popup list */
-  .menu-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 1.2em;
-  }
-  .menu-list li {
-    margin: 12px 0;
-    cursor: pointer;
-    color: black;
-    border-radius: 4px;
-    padding: 6px 10px;
-    transition: background-color 0.3s;
+  /* Dropdown menu styles */
+  .menu-dropdown {
+    position: fixed;
+    top: 55px; /* below the logo */
+    right: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    width: 180px;
     font-family: 'Times New Roman', serif;
+    z-index: 1500;
+    display: none; /* hidden by default */
   }
-  .menu-list li:hover {
+  .menu-dropdown ul {
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+  }
+  .menu-dropdown li {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .menu-dropdown li:hover {
     background-color: #eee;
   }
 </style>
@@ -168,7 +173,7 @@
   ⟢ Drift.ID : 0xCZRTH
 </div>
 
-<!-- Login popup -->
+<!-- Login popup (unchanged) -->
 <div class="popup-overlay" id="loginPopup">
   <div class="popup">
     <div class="close-btn" id="closeLoginPopup">&times;</div>
@@ -181,27 +186,23 @@
   </div>
 </div>
 
-<!-- Menu popup -->
-<div class="popup-overlay" id="menuPopup">
-  <div class="popup">
-    <div class="close-btn" id="closeMenuPopup">&times;</div>
-    <ul class="menu-list">
-      <li id="menuDashboard">Dashboard</li>
-      <li id="menuCustomize">Customize</li>
-      <li id="menuFrames">The Frames I Kept</li>
-      <li id="menuMalzreth">Malzreth Realm</li>
-      <li id="menuSettings">Settings</li>
-      <li id="menuLogout">Logout</li>
-    </ul>
-  </div>
+<!-- Dropdown menu -->
+<div class="menu-dropdown" id="menuDropdown">
+  <ul>
+    <li id="menuDashboard">Dashboard</li>
+    <li id="menuCustomize">Customize</li>
+    <li id="menuFrames">The Frames I Kept</li>
+    <li id="menuMalzreth">Malzreth Realm</li>
+    <li id="menuSettings">Settings</li>
+    <li id="menuLogout">Logout</li>
+  </ul>
 </div>
 
 <script>
   const logo = document.getElementById('logo');
   const loginPopup = document.getElementById('loginPopup');
-  const menuPopup = document.getElementById('menuPopup');
+  const menuDropdown = document.getElementById('menuDropdown');
   const closeLoginPopup = document.getElementById('closeLoginPopup');
-  const closeMenuPopup = document.getElementById('closeMenuPopup');
   const loginBtn = document.getElementById('loginBtn');
   const logoutBtn = document.getElementById('menuLogout');
 
@@ -213,54 +214,55 @@
   // Show login popup
   function showLogin() {
     loginPopup.style.display = 'flex';
-    menuPopup.style.display = 'none';
+    menuDropdown.style.display = 'none';
     document.getElementById('voidSigil').value = '';
     document.getElementById('voidLock').value = '';
   }
 
-  // Show menu popup
-  function showMenu() {
-    menuPopup.style.display = 'flex';
-    loginPopup.style.display = 'none';
+  // Toggle dropdown menu visibility
+  function toggleMenu() {
+    if(menuDropdown.style.display === 'block') {
+      menuDropdown.style.display = 'none';
+    } else {
+      menuDropdown.style.display = 'block';
+      loginPopup.style.display = 'none';
+    }
   }
 
-  // Logo click behavior depends on login state
+  // Logo click event
   logo.addEventListener('click', () => {
     if (isLoggedIn()) {
-      showMenu();
+      toggleMenu();
     } else {
       showLogin();
     }
   });
 
-  // Close buttons
+  // Close login popup
   closeLoginPopup.addEventListener('click', () => {
     loginPopup.style.display = 'none';
   });
-  closeMenuPopup.addEventListener('click', () => {
-    menuPopup.style.display = 'none';
-  });
 
-  // Clicking outside popup closes it
+  // Clicking outside login popup closes it
   loginPopup.addEventListener('click', e => {
     if (e.target === loginPopup) {
       loginPopup.style.display = 'none';
     }
   });
-  menuPopup.addEventListener('click', e => {
-    if (e.target === menuPopup) {
-      menuPopup.style.display = 'none';
+
+  // Clicking outside dropdown closes it
+  document.addEventListener('click', e => {
+    if (!menuDropdown.contains(e.target) && e.target !== logo) {
+      menuDropdown.style.display = 'none';
     }
   });
 
   // Login button logic
   loginBtn.addEventListener('click', () => {
-    // Simple login check placeholder (replace with real auth)
     const username = document.getElementById('voidSigil').value.trim();
     const password = document.getElementById('voidLock').value.trim();
 
     if(username && password) {
-      // Save login state
       localStorage.setItem('loggedIn', 'true');
       loginPopup.style.display = 'none';
       alert('Unlocked! Welcome.');
@@ -272,10 +274,9 @@
   // Logout button logic
   logoutBtn.addEventListener('click', () => {
     localStorage.removeItem('loggedIn');
-    menuPopup.style.display = 'none';
+    menuDropdown.style.display = 'none';
     alert('Logged out.');
   });
-
 </script>
 
 </body>
