@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cazrath Dashboard</title>
+<title>𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡</title>
 <style>
 body {
     background-color: white;
@@ -29,7 +29,7 @@ h1 {
 </head>
 <body>
 
-<h1>ℭ𝔞𝔷𝔯𝔞𝔱𝔥 Dashboard</h1>
+<h1>𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡</h1>
 
 <div class="console-block" id="scanlog">
 [ ⟢ Omni.Eye.Scanlog : v.8.0.5.𝘳𝘶𝘯𝘯𝘪𝘯𝘨 ]<br>
@@ -55,14 +55,13 @@ h1 {
 </div>
 
 <script>
-// Placeholder function: later you can fetch live data from backend
 function updateDashboard(data){
   document.getElementById('scanlog').innerHTML = `[ ⟢ Omni.Eye.Scanlog : v.8.0.5.𝘳𝘶𝘯𝘯𝘪𝘯𝘨 ]<br>
 ⟢ Geoflux.Trace     : ${data.geoflux}<br>
 ⟢ Vessel.Type       : ${data.vessel}<br>
 ⟢ Entry.Points      : ${data.entry}<br>
 ⟢ Pulse.Active      : ${data.active}`;
-
+  
   document.getElementById('statusFeed').innerHTML = `╭─◈ STATUS FEED<br>
 ⚑ No new fragments uploaded today.<br>
 ⚑ Your last model render: ${data.lastModel}<br>
@@ -75,7 +74,7 @@ function updateDashboard(data){
 ⟢ Portal.Uptime   : ${data.portalUptime}       ⟢ Most.Active.Zone: ${data.mostActiveZone}<br>`;
 }
 
-// Example of dynamic update (you can replace with backend API fetch)
+// Example fake data for testing
 setInterval(() => {
   const fakeData = {
     geoflux: "India • US • Philippines",
@@ -94,6 +93,5 @@ setInterval(() => {
   updateDashboard(fakeData);
 }, 5000);
 </script>
-
 </body>
 </html>
