@@ -14,13 +14,14 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
 
         /* Top right C logo */
         .logo-container {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             width: 40px;
             height: 40px;
             border: 2px solid black;
@@ -28,46 +29,46 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
+            text-decoration: none;
+            color: black;
         }
 
         /* Title + quote */
         .title {
-            margin-top: 30px;
+            margin-top: 20px;
             font-size: 48px;
             text-align: center;
         }
 
         .quote {
-            margin-top: 40px; /* pushed down */
+            margin-top: 5px;
             font-size: 20px;
             text-align: center;
             max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         /* Bio lines */
         .bio {
-            margin-top: 40px; /* pushed down */
-            text-align: left;
+            position: absolute;
+            top: 150px;
+            left: 30px;
             font-size: 18px;
             line-height: 1.8;
-            padding-left: 30px;
+            text-align: left;
         }
     </style>
 </head>
 <body>
 
     <!-- Top right C logo -->
-    <div class="logo-container" onclick="window.location.href='login.html'">ℭ</div>
+    <a href="login.html" class="logo-container">ℭ</a>
 
     <!-- Title + Quote -->
     <div class="title">ℭ𝔞𝔷𝔯𝔞𝔱𝔥</div>
     <div class="quote">
-        𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 
-        𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.
+        𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.
     </div>
 
     <!-- Bio section -->
