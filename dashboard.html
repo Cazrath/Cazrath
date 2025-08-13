@@ -50,8 +50,8 @@ h1 {
 <div class="console-block" id="riftMetrics">
 [ ⟢ Rift.Metrics : Passive Echo Scan ]<br>
 ⟢ Total.Views     : Loading...        ⟢ Echo.Time       : Loading...<br>
-⟢ Unique.Visits   : Loading...        ⟢ Avg.View.Span   : Loading...<br>
-⟢ Portal.Uptime   : Loading...       ⟢ Most.Active.Zone: Loading...<br>
+⟢ Unique.Visits   : Loading...        ⢢ Avg.View.Span   : Loading...<br>
+⟢ Portal.Uptime   : Loading...       ⢢ Most.Active.Zone: Loading...<br>
 </div>
 
 <!-- Firebase SDK -->
@@ -60,60 +60,53 @@ h1 {
 <script>
 // Your Firebase config
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "SENDER_ID",
-  appId: "APP_ID"
+  apiKey: "AIzaSyCHxcCk0HDPNJryOuUI2DRDHz06mkq4-5I",
+  authDomain: "cazrath-dashboard.firebaseapp.com",
+  databaseURL: "https://cazrath-dashboard-default-rtdb.firebaseio.com",
+  projectId: "cazrath-dashboard",
+  storageBucket: "cazrath-dashboard.firebasestorage.app",
+  messagingSenderId: "219381624273",
+  appId: "1:219381624273:web:25d01fecebbc4bcb4ec4f0",
+  measurementId: "G-L7RCGXXLPD"
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// Update dashboard from database
+// Function to update dashboard UI
 function updateDashboard(visitors) {
   const countries = {};
   const devices = {Mobile:0, Desktop:0, Void:0};
   let activeUsers = 0;
-
   const now = Date.now();
 
   for (let key in visitors) {
     const v = visitors[key];
-    // count active users (last 5 min)
+    if (!v) continue;
     if (now - v.lastActive < 5*60*1000) activeUsers++;
-    // count countries
     if (v.country) countries[v.country] = (countries[v.country] || 0)+1;
-    // count devices
     if (v.device && devices[v.device] !== undefined) devices[v.device]++;
   }
 
-  // Geoflux.Trace
-  const geoflux = Object.keys(countries).join(' • ');
-  // Vessel.Type
+  const geoflux = Object.keys(countries).join(' • ') || 'None';
   const vessel = `Mobile: ${devices.Mobile} | Desktop: ${devices.Desktop} | Void: ${devices.Void}`;
-  // Pulse.Active
   const active = `∿ ${activeUsers} Souls currently inside`;
 
   document.getElementById('scanlog').innerHTML = `[ ⟢ Omni.Eye.Scanlog : v.8.0.5.𝘳𝘶𝘯𝘯𝘪𝘯𝘨 ]<br>
-⟢ Geoflux.Trace     : ${geoflux || 'None'}<br>
+⟢ Geoflux.Trace     : ${geoflux}<br>
 ⟢ Vessel.Type       : ${vessel}<br>
 ⟢ Entry.Points      : Discord.Gate • Direct.Rift<br>
 ⟢ Pulse.Active      : ${active}`;
 
-  // Status Feed placeholders (update as needed)
   document.getElementById('statusFeed').innerHTML = `╭─◈ STATUS FEED<br>
 ⚑ No new fragments uploaded today.<br>
 ⚑ Your last model render: [Malzreth_Blade.obj]<br>
 ⚑ ${Object.keys(visitors).length} users accessed your Word.Rift in the past hour.<br>
 ╰────────────────────────────────────────────────────────╯`;
 
-  // Rift Metrics placeholders
   document.getElementById('riftMetrics').innerHTML = `[ ⟢ Rift.Metrics : Passive Echo Scan ]<br>
-⟢ Total.Views     : ${Object.keys(visitors).length}        ⟢ Echo.Time       : 4.6 hrs<br>
-⟢ Unique.Visits   : ${Object.keys(visitors).length}        ⟢ Avg.View.Span   : 23 sec<br>
-⟢ Portal.Uptime   : 89 hrs       ⟢ Most.Active.Zone: ${geoflux.split(' • ')[0] || 'Unknown'}<br>`;
+⟢ Total.Views     : ${Object.keys(visitors).length}        ⢢ Echo.Time       : 4.6 hrs<br>
+⟢ Unique.Visits   : ${Object.keys(visitors).length}        ⢢ Avg.View.Span   : 23 sec<br>
+⟢ Portal.Uptime   : 89 hrs       ⢢ Most.Active.Zone: ${geoflux.split(' • ')[0] || 'Unknown'}<br>`;
 }
 
 // Listen to Firebase changes
@@ -121,6 +114,20 @@ db.ref('visitors').on('value', snapshot => {
   const data = snapshot.val() || {};
   updateDashboard(data);
 });
+
+// Function to simulate or send new visitor/action event
+function sendEvent(user, country='Unknown', device='Void') {
+  const newVisitorRef = db.ref('visitors/' + user);
+  newVisitorRef.set({
+    lastActive: Date.now(),
+    country: country,
+    device: device
+  });
+  console.log(`Event sent for ${user}`);
+}
+
+// Example usage: uncomment to test
+// sendEvent('NuMan', 'India', 'Desktop');
 </script>
 
 </body>
