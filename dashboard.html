@@ -49,16 +49,18 @@ h1 {
 
 <div class="console-block" id="riftMetrics">
 [ ⟢ Rift.Metrics : Passive Echo Scan ]<br>
-⟢ Total.Views     : Loading...        ⟢ Echo.Time       : Loading...<br>
+⟢ Total.Views     : Loading...        ⢢ Echo.Time       : Loading...<br>
 ⟢ Unique.Visits   : Loading...        ⢢ Avg.View.Span   : Loading...<br>
 ⟢ Portal.Uptime   : Loading...       ⢢ Most.Active.Zone: Loading...<br>
 </div>
 
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-<script>
-// Your Firebase config
+<!-- Firebase Modern SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCHxcCk0HDPNJryOuUI2DRDHz06mkq4-5I",
   authDomain: "cazrath-dashboard.firebaseapp.com",
@@ -66,13 +68,17 @@ const firebaseConfig = {
   projectId: "cazrath-dashboard",
   storageBucket: "cazrath-dashboard.firebasestorage.app",
   messagingSenderId: "219381624273",
-  appId: "1:219381624273:web:25d01fecebbc4bcb4ec4f0",
-  measurementId: "G-L7RCGXXLPD"
+  appId: "1:219381624273:web:1a016197eb90ec0d4ec4f0",
+  measurementId: "G-HYCDZVR268"
 };
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
 
-// Function to update dashboard UI
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getDatabase(app);
+console.log("Firebase connected!");
+
+// Update dashboard function
 function updateDashboard(visitors) {
   const countries = {};
   const devices = {Mobile:0, Desktop:0, Void:0};
@@ -109,16 +115,15 @@ function updateDashboard(visitors) {
 ⟢ Portal.Uptime   : 89 hrs       ⢢ Most.Active.Zone: ${geoflux.split(' • ')[0] || 'Unknown'}<br>`;
 }
 
-// Listen to Firebase changes
-db.ref('visitors').on('value', snapshot => {
+// Listen to Firebase 'visitors' node
+onValue(ref(db, 'visitors'), snapshot => {
   const data = snapshot.val() || {};
   updateDashboard(data);
 });
 
-// Function to simulate or send new visitor/action event
+// Function to log a visitor/event
 function sendEvent(user, country='Unknown', device='Void') {
-  const newVisitorRef = db.ref('visitors/' + user);
-  newVisitorRef.set({
+  set(ref(db, 'visitors/' + user), {
     lastActive: Date.now(),
     country: country,
     device: device
@@ -126,8 +131,22 @@ function sendEvent(user, country='Unknown', device='Void') {
   console.log(`Event sent for ${user}`);
 }
 
-// Example usage: uncomment to test
-// sendEvent('NuMan', 'India', 'Desktop');
+// --- Optional: simulate live visitors ---
+const testUsers = [
+  {name: 'NuMan', country: 'India', device: 'Desktop'},
+  {name: 'Ayesha', country: 'USA', device: 'Mobile'},
+  {name: 'Malzreth', country: 'UK', device: 'Desktop'},
+  {name: 'CazrathBot', country: 'Void', device: 'Void'},
+];
+
+testUsers.forEach(u => sendEvent(u.name,u.country,u.device));
+
+// Simulate random activity every 10 seconds
+setInterval(() => {
+  const randomUser = testUsers[Math.floor(Math.random() * testUsers.length)];
+  sendEvent(randomUser.name, randomUser.country, randomUser.device);
+}, 10000);
+
 </script>
 
 </body>
