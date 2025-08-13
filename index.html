@@ -29,18 +29,18 @@
         top: 250px;
         left: 20px;
     }
-    /* Circular logo on top right */
+    /* Smaller circular logo on top right */
     .logo {
         position: fixed;
         top: 20px;
         right: 20px;
-        width: 50px;
-        height: 50px;
+        width: 30px;
+        height: 30px;
         background-color: black;
         color: white;
-        font-size: 2em;
+        font-size: 1.5em;
         font-weight: bold;
-        line-height: 50px;
+        line-height: 30px;
         text-align: center;
         border-radius: 50%;
         cursor: pointer;
@@ -154,7 +154,7 @@
         <input type="text" id="username" placeholder="Void Sigil" autocomplete="off" />
         <label for="password">Password</label>
         <input type="password" id="password" placeholder="Void Lock" autocomplete="off" />
-        <button id="loginBtn">Login</button>
+        <button id="loginBtn">Unlock the Void</button>
     </div>
 </div>
 
@@ -165,7 +165,6 @@
 
     logo.addEventListener('click', () => {
         popup.style.display = 'flex';
-        // Optional: Clear inputs when popup opens
         document.getElementById('username').value = '';
         document.getElementById('password').value = '';
     });
@@ -174,17 +173,15 @@
         popup.style.display = 'none';
     });
 
-    // Close popup if clicking outside the popup box
     popup.addEventListener('click', (e) => {
         if(e.target === popup) {
             popup.style.display = 'none';
         }
     });
 
-    // (Optional) Login button click handler — currently just closes popup
     document.getElementById('loginBtn').addEventListener('click', () => {
-        // Here you can add actual login logic if you want
-        alert('Login clicked! (Add your login logic here)');
+        // You can add your login logic here
+        alert('Unlocking the Void... (Add your login logic here)');
         popup.style.display = 'none';
     });
 </script>
