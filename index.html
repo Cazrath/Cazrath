@@ -149,7 +149,7 @@ body {
 <!-- Menu dropdown -->
 <div class="menu-dropdown" id="menuDropdown">
   <ul>
-    <li id="menuDashboard">Dashboard</li>
+    <li id="menuDashboard" onclick="window.location.href='dashboard.html'">Dashboard</li>
     <li id="menuCustomize">Customize</li>
     <li id="menuFrames">The Frames I Kept</li>
     <li id="menuMalzreth">Malzreth Realm</li>
@@ -203,15 +203,6 @@ logo.addEventListener('click', () => {
   }
 });
 
-document.getElementById('menuDashboard').addEventListener('click', () => {
-  menuDropdown.style.display = 'none';
-  dashboardOverlay.style.display = 'flex';
-
-  // Here you can fetch live data from backend API
-  // Example:
-  // fetch('/api/dashboard').then(res => res.json()).then(data => { updateDashboard(data) });
-});
-
 document.getElementById('closeDashboard').addEventListener('click', () => {
   dashboardOverlay.style.display = 'none';
 });
@@ -238,3 +229,28 @@ function updateDashboard(data){
 
   document.getElementById('riftMetrics').innerHTML = `[ ⟢ Rift.Metrics : Passive Echo Scan ]<br>
 ⟢ Total.Views     : ${data.totalViews}        ⟢ Echo.Time       : ${data.echoTime}<br>
+⟢ Unique.Visits   : ${data.uniqueVisits}        ⟢ Avg.View.Span   : ${data.avgViewSpan}<br>
+⟢ Portal.Uptime   : ${data.portalUptime}       ⟢ Most.Active.Zone: ${data.mostActiveZone}<br>`;
+}
+
+// Example fake data for testing (replace with backend API later)
+setInterval(() => {
+  const fakeData = {
+    geoflux: "India • US • Philippines",
+    vessel: "71% Mobile | 22% Desktop | 7% Void",
+    entry: "Discord.Gate • Direct.Rift",
+    active: "∿ 6 Souls currently inside",
+    lastModel: "[Malzreth_Blade.obj]",
+    wordRiftAccess: 3,
+    totalViews: 12,
+    echoTime: "4.6 hrs",
+    uniqueVisits: 8,
+    avgViewSpan: "23 sec",
+    portalUptime: "89 hrs",
+    mostActiveZone: "India"
+  };
+  updateDashboard(fakeData);
+}, 5000);
+</script>
+</body>
+</html>
