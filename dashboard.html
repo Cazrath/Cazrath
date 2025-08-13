@@ -43,7 +43,7 @@ h1 {
 ╭─◈ STATUS FEED<br>
 ⚑ No new fragments uploaded today.<br>
 ⚑ Your last model render: Loading...<br>
-⚑ 3 users accessed your Word.Rift in the past hour.<br>
+⚑ 0 users accessed your Word.Rift in the past hour.<br>
 ╰────────────────────────────────────────────────────────╯
 </div>
 
@@ -54,44 +54,74 @@ h1 {
 ⟢ Portal.Uptime   : Loading...       ⟢ Most.Active.Zone: Loading...<br>
 </div>
 
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
-function updateDashboard(data){
+// Your Firebase config
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "SENDER_ID",
+  appId: "APP_ID"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// Update dashboard from database
+function updateDashboard(visitors) {
+  const countries = {};
+  const devices = {Mobile:0, Desktop:0, Void:0};
+  let activeUsers = 0;
+
+  const now = Date.now();
+
+  for (let key in visitors) {
+    const v = visitors[key];
+    // count active users (last 5 min)
+    if (now - v.lastActive < 5*60*1000) activeUsers++;
+    // count countries
+    if (v.country) countries[v.country] = (countries[v.country] || 0)+1;
+    // count devices
+    if (v.device && devices[v.device] !== undefined) devices[v.device]++;
+  }
+
+  // Geoflux.Trace
+  const geoflux = Object.keys(countries).join(' • ');
+  // Vessel.Type
+  const vessel = `Mobile: ${devices.Mobile} | Desktop: ${devices.Desktop} | Void: ${devices.Void}`;
+  // Pulse.Active
+  const active = `∿ ${activeUsers} Souls currently inside`;
+
   document.getElementById('scanlog').innerHTML = `[ ⟢ Omni.Eye.Scanlog : v.8.0.5.𝘳𝘶𝘯𝘯𝘪𝘯𝘨 ]<br>
-⟢ Geoflux.Trace     : ${data.geoflux}<br>
-⟢ Vessel.Type       : ${data.vessel}<br>
-⟢ Entry.Points      : ${data.entry}<br>
-⟢ Pulse.Active      : ${data.active}`;
-  
+⟢ Geoflux.Trace     : ${geoflux || 'None'}<br>
+⟢ Vessel.Type       : ${vessel}<br>
+⟢ Entry.Points      : Discord.Gate • Direct.Rift<br>
+⟢ Pulse.Active      : ${active}`;
+
+  // Status Feed placeholders (update as needed)
   document.getElementById('statusFeed').innerHTML = `╭─◈ STATUS FEED<br>
 ⚑ No new fragments uploaded today.<br>
-⚑ Your last model render: ${data.lastModel}<br>
-⚑ ${data.wordRiftAccess} users accessed your Word.Rift in the past hour.<br>
+⚑ Your last model render: [Malzreth_Blade.obj]<br>
+⚑ ${Object.keys(visitors).length} users accessed your Word.Rift in the past hour.<br>
 ╰────────────────────────────────────────────────────────╯`;
 
+  // Rift Metrics placeholders
   document.getElementById('riftMetrics').innerHTML = `[ ⟢ Rift.Metrics : Passive Echo Scan ]<br>
-⟢ Total.Views     : ${data.totalViews}        ⟢ Echo.Time       : ${data.echoTime}<br>
-⟢ Unique.Visits   : ${data.uniqueVisits}        ⟢ Avg.View.Span   : ${data.avgViewSpan}<br>
-⟢ Portal.Uptime   : ${data.portalUptime}       ⟢ Most.Active.Zone: ${data.mostActiveZone}<br>`;
+⟢ Total.Views     : ${Object.keys(visitors).length}        ⟢ Echo.Time       : 4.6 hrs<br>
+⟢ Unique.Visits   : ${Object.keys(visitors).length}        ⟢ Avg.View.Span   : 23 sec<br>
+⟢ Portal.Uptime   : 89 hrs       ⟢ Most.Active.Zone: ${geoflux.split(' • ')[0] || 'Unknown'}<br>`;
 }
 
-// Example fake data for testing
-setInterval(() => {
-  const fakeData = {
-    geoflux: "India • US • Philippines",
-    vessel: "71% Mobile | 22% Desktop | 7% Void",
-    entry: "Discord.Gate • Direct.Rift",
-    active: "∿ 6 Souls currently inside",
-    lastModel: "[Malzreth_Blade.obj]",
-    wordRiftAccess: 3,
-    totalViews: 12,
-    echoTime: "4.6 hrs",
-    uniqueVisits: 8,
-    avgViewSpan: "23 sec",
-    portalUptime: "89 hrs",
-    mostActiveZone: "India"
-  };
-  updateDashboard(fakeData);
-}, 5000);
+// Listen to Firebase changes
+db.ref('visitors').on('value', snapshot => {
+  const data = snapshot.val() || {};
+  updateDashboard(data);
+});
 </script>
+
 </body>
 </html>
