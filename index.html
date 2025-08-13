@@ -5,128 +5,149 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Cazrath</title>
 <style>
-    body {
-        background-color: white;
-        color: black;
-        font-family: 'Times New Roman', serif;
-        margin: 0;
-        padding: 0;
-    }
-    .title {
-        font-size: 4em;
-        text-align: center;
-        margin-top: 50px;
-    }
-    .quote {
-        font-size: 1.2em;
-        text-align: center;
-        margin-top: 10px;
-    }
-    .info {
-        font-size: 1em;
-        line-height: 1.8em;
-        position: absolute;
-        top: 250px;
-        left: 20px;
-    }
-    /* Logo: white bg, black text by default; black bg, white text on hover */
-    .logo {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        width: 30px;
-        height: 30px;
-        background-color: white;
-        color: black;
-        font-size: 1.5em;
-        font-weight: bold;
-        line-height: 30px;
-        text-align: center;
-        border-radius: 50%;
-        cursor: pointer;
-        user-select: none;
-        box-shadow: 0 0 8px rgba(0,0,0,0.3);
-        z-index: 1000;
-        transition: background-color 0.3s, color 0.3s;
-    }
-    .logo:hover {
-        background-color: black;
-        color: white;
-    }
-    /* Popup overlay */
-    .popup-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0,0,0,0.5);
-        display: none; /* hidden by default */
-        justify-content: center;
-        align-items: center;
-        z-index: 2000;
-    }
-    /* Popup container */
-    .popup {
-        background: white;
-        padding: 30px 40px;
-        border-radius: 8px;
-        box-shadow: 0 0 15px rgba(0,0,0,0.3);
-        width: 300px;
-        position: relative;
-        font-family: 'Times New Roman', serif;
-        color: black;
-    }
-    .popup h2 {
-        margin-top: 0;
-        margin-bottom: 20px;
-        font-weight: normal;
-        font-size: 1.5em;
-        text-align: center;
-    }
-    .popup label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-    }
-    .popup input {
-        width: 100%;
-        padding: 8px 10px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 1em;
-        font-family: 'Times New Roman', serif;
-        box-sizing: border-box;
-    }
-    .popup button {
-        width: 100%;
-        padding: 10px 0;
-        background-color: black;
-        color: white;
-        border: none;
-        font-size: 1.1em;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: background-color 0.3s;
-        font-family: 'Times New Roman', serif;
-    }
-    .popup button:hover {
-        background-color: #333;
-    }
-    /* Close button */
-    .popup .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        font-size: 1.5em;
-        color: #999;
-        cursor: pointer;
-        user-select: none;
-    }
-    .popup .close-btn:hover {
-        color: #555;
-    }
+  body {
+    background-color: white;
+    color: black;
+    font-family: 'Times New Roman', serif;
+    margin: 0;
+    padding: 0;
+  }
+  .title {
+    font-size: 4em;
+    text-align: center;
+    margin-top: 50px;
+  }
+  .quote {
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .info {
+    font-size: 1em;
+    line-height: 1.8em;
+    position: absolute;
+    top: 250px;
+    left: 20px;
+  }
+  /* Logo: white bg, black text by default; black bg, white text on hover */
+  .logo {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    color: black;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .logo:hover {
+    background-color: black;
+    color: white;
+  }
+
+  /* Popup overlay base */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: none; /* hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+  }
+
+  /* Login popup */
+  .popup {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    width: 300px;
+    position: relative;
+    font-family: 'Times New Roman', serif;
+    color: black;
+  }
+  .popup h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: normal;
+    font-size: 1.5em;
+    text-align: center;
+  }
+  .popup label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  .popup input {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    font-family: 'Times New Roman', serif;
+    box-sizing: border-box;
+  }
+  .popup button {
+    width: 100%;
+    padding: 10px 0;
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-family: 'Times New Roman', serif;
+  }
+  .popup button:hover {
+    background-color: #333;
+  }
+  .popup .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5em;
+    color: #999;
+    cursor: pointer;
+    user-select: none;
+  }
+  .popup .close-btn:hover {
+    color: #555;
+  }
+
+  /* Menu popup list */
+  .menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2em;
+  }
+  .menu-list li {
+    margin: 12px 0;
+    cursor: pointer;
+    color: black;
+    border-radius: 4px;
+    padding: 6px 10px;
+    transition: background-color 0.3s;
+    font-family: 'Times New Roman', serif;
+  }
+  .menu-list li:hover {
+    background-color: #eee;
+  }
 </style>
 </head>
 <body>
@@ -136,55 +157,125 @@
 <div class="title">ℭ𝔞𝔷𝔯𝔞𝔱𝔥</div>
 
 <div class="quote">
-    𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.
+  𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.
 </div>
 
 <div class="info">
-    ⟢ Vein.Name : Nu’man Anis Ahmed Ansari<br>
-    ⟢ Age.Sigil : XXII.𝘴𝘵𝘪𝘭𝘭.𝘸𝘢𝘭𝘬𝘪𝘯𝘨<br>
-    ⟢ Depth.Scan : survived.unseen<br>
-    ⟢ Bound.To : what's left<br>
-    ⟢ Drift.ID : 0xCZRTH
+  ⟢ Vein.Name : Nu’man Anis Ahmed Ansari<br>
+  ⟢ Age.Sigil : XXII.𝘴𝘵𝘪𝘭𝘭.𝘸𝘢𝘭𝘬𝘪𝘯𝘨<br>
+  ⟢ Depth.Scan : survived.unseen<br>
+  ⟢ Bound.To : what's left<br>
+  ⟢ Drift.ID : 0xCZRTH
 </div>
 
 <!-- Login popup -->
 <div class="popup-overlay" id="loginPopup">
-    <div class="popup">
-        <div class="close-btn" id="closePopup">&times;</div>
-        <h2>Login</h2>
-        <label for="voidSigil">Void Sigil</label>
-        <input type="text" id="voidSigil" placeholder="Username" autocomplete="off" />
-        <label for="voidLock">Void Lock</label>
-        <input type="password" id="voidLock" placeholder="Password" autocomplete="off" />
-        <button id="loginBtn">Unlock the Void</button>
-    </div>
+  <div class="popup">
+    <div class="close-btn" id="closeLoginPopup">&times;</div>
+    <h2>Login</h2>
+    <label for="voidSigil">Void Sigil</label>
+    <input type="text" id="voidSigil" placeholder="Username" autocomplete="off" />
+    <label for="voidLock">Void Lock</label>
+    <input type="password" id="voidLock" placeholder="Password" autocomplete="off" />
+    <button id="loginBtn">Unlock the Void</button>
+  </div>
+</div>
+
+<!-- Menu popup -->
+<div class="popup-overlay" id="menuPopup">
+  <div class="popup">
+    <div class="close-btn" id="closeMenuPopup">&times;</div>
+    <ul class="menu-list">
+      <li id="menuDashboard">Dashboard</li>
+      <li id="menuCustomize">Customize</li>
+      <li id="menuFrames">The Frames I Kept</li>
+      <li id="menuMalzreth">Malzreth Realm</li>
+      <li id="menuSettings">Settings</li>
+      <li id="menuLogout">Logout</li>
+    </ul>
+  </div>
 </div>
 
 <script>
-    const logo = document.getElementById('logo');
-    const popup = document.getElementById('loginPopup');
-    const closeBtn = document.getElementById('closePopup');
+  const logo = document.getElementById('logo');
+  const loginPopup = document.getElementById('loginPopup');
+  const menuPopup = document.getElementById('menuPopup');
+  const closeLoginPopup = document.getElementById('closeLoginPopup');
+  const closeMenuPopup = document.getElementById('closeMenuPopup');
+  const loginBtn = document.getElementById('loginBtn');
+  const logoutBtn = document.getElementById('menuLogout');
 
-    logo.addEventListener('click', () => {
-        popup.style.display = 'flex';
-        document.getElementById('voidSigil').value = '';
-        document.getElementById('voidLock').value = '';
-    });
+  // Check login state on page load
+  function isLoggedIn() {
+    return localStorage.getItem('loggedIn') === 'true';
+  }
 
-    closeBtn.addEventListener('click', () => {
-        popup.style.display = 'none';
-    });
+  // Show login popup
+  function showLogin() {
+    loginPopup.style.display = 'flex';
+    menuPopup.style.display = 'none';
+    document.getElementById('voidSigil').value = '';
+    document.getElementById('voidLock').value = '';
+  }
 
-    popup.addEventListener('click', (e) => {
-        if(e.target === popup) {
-            popup.style.display = 'none';
-        }
-    });
+  // Show menu popup
+  function showMenu() {
+    menuPopup.style.display = 'flex';
+    loginPopup.style.display = 'none';
+  }
 
-    document.getElementById('loginBtn').addEventListener('click', () => {
-        alert('Unlocking the Void... (Add your login logic here)');
-        popup.style.display = 'none';
-    });
+  // Logo click behavior depends on login state
+  logo.addEventListener('click', () => {
+    if (isLoggedIn()) {
+      showMenu();
+    } else {
+      showLogin();
+    }
+  });
+
+  // Close buttons
+  closeLoginPopup.addEventListener('click', () => {
+    loginPopup.style.display = 'none';
+  });
+  closeMenuPopup.addEventListener('click', () => {
+    menuPopup.style.display = 'none';
+  });
+
+  // Clicking outside popup closes it
+  loginPopup.addEventListener('click', e => {
+    if (e.target === loginPopup) {
+      loginPopup.style.display = 'none';
+    }
+  });
+  menuPopup.addEventListener('click', e => {
+    if (e.target === menuPopup) {
+      menuPopup.style.display = 'none';
+    }
+  });
+
+  // Login button logic
+  loginBtn.addEventListener('click', () => {
+    // Simple login check placeholder (replace with real auth)
+    const username = document.getElementById('voidSigil').value.trim();
+    const password = document.getElementById('voidLock').value.trim();
+
+    if(username && password) {
+      // Save login state
+      localStorage.setItem('loggedIn', 'true');
+      loginPopup.style.display = 'none';
+      alert('Unlocked! Welcome.');
+    } else {
+      alert('Please enter Void Sigil and Void Lock.');
+    }
+  });
+
+  // Logout button logic
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('loggedIn');
+    menuPopup.style.display = 'none';
+    alert('Logged out.');
+  });
+
 </script>
 
 </body>
