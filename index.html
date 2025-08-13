@@ -148,10 +148,14 @@
   .menu-dropdown li {
     padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
+    user-select: none;
+    color: black;
+    border-radius: 4px;
   }
   .menu-dropdown li:hover {
-    background-color: #eee;
+    background-color: black;
+    color: white;
   }
 </style>
 </head>
@@ -276,6 +280,28 @@
     localStorage.removeItem('loggedIn');
     menuDropdown.style.display = 'none';
     alert('Logged out.');
+  });
+
+  // Menu item click handlers with alerts
+  document.getElementById('menuDashboard').addEventListener('click', () => {
+    alert('Dashboard clicked! (Add your page logic here)');
+    menuDropdown.style.display = 'none';
+  });
+  document.getElementById('menuCustomize').addEventListener('click', () => {
+    alert('Customize clicked! (Add your page logic here)');
+    menuDropdown.style.display = 'none';
+  });
+  document.getElementById('menuFrames').addEventListener('click', () => {
+    alert('The Frames I Kept clicked! (Add your page logic here)');
+    menuDropdown.style.display = 'none';
+  });
+  document.getElementById('menuMalzreth').addEventListener('click', () => {
+    alert('Malzreth Realm clicked! (Add your page logic here)');
+    menuDropdown.style.display = 'none';
+  });
+  document.getElementById('menuSettings').addEventListener('click', () => {
+    alert('Settings clicked! (Add your page logic here)');
+    menuDropdown.style.display = 'none';
   });
 </script>
 
