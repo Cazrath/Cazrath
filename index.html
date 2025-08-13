@@ -35,13 +35,14 @@ body {
     right: 20px;
     width: 40px;
     height: 40px;
-    background-color: black;
+    background-color: white;
     border-radius: 50%;
+    border: 2px solid black;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 #cLogo:hover {
-    background-color: white;
+    background-color: black;
 }
 #loginForm, #logoDropdown {
     display: none;
@@ -52,6 +53,7 @@ body {
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    z-index: 100;
 }
 #loginForm input {
     display: block;
@@ -88,7 +90,6 @@ body {
     ⟢ Drift.ID : 0xCZRTH
 </div>
 
-<!-- Logo -->
 <div id="cLogo"></div>
 
 <!-- Login Form -->
@@ -120,7 +121,7 @@ const usernameInput = document.getElementById('username');
 const passwordInput = document.getElementById('password');
 const dashboardBtn = document.getElementById('dashboardBtn');
 
-// Show dropdown or login on logo click
+// Toggle dropdown or login
 logo.addEventListener('click', () => {
     if(isLoggedIn){
         dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
@@ -131,7 +132,7 @@ logo.addEventListener('click', () => {
     }
 });
 
-// Handle login
+// Login handler
 loginButton.addEventListener('click', (e) => {
     e.preventDefault();
     const username = usernameInput.value;
@@ -146,17 +147,17 @@ loginButton.addEventListener('click', (e) => {
     }
 });
 
-// Handle logout
+// Logout handler
 logoutBtn.addEventListener('click', () => {
     isLoggedIn = false;
     localStorage.removeItem('cazrathLoggedIn');
     dropdown.style.display = 'none';
 });
 
-// Dashboard button click (example: redirect or alert)
+// Dashboard click example
 dashboardBtn.addEventListener('click', () => {
     alert('Opening 𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡...');
-    // window.location.href = 'dashboard.html'; // uncomment if you have a dashboard page
+    // window.location.href = 'dashboard.html'; // uncomment if dashboard page exists
 });
 </script>
 
