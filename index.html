@@ -29,109 +29,134 @@ body {
     top: 250px;
     left: 20px;
 }
-/* Logo */
-.logo {
-    position: fixed;
+#cLogo {
+    position: absolute;
     top: 20px;
     right: 20px;
-    width: 30px;
-    height: 30px;
-    background-color: white;
-    color: black;
-    font-size: 1.5em;
-    font-weight: bold;
-    line-height: 30px;
-    text-align: center;
+    width: 40px;
+    height: 40px;
+    background-color: black;
     border-radius: 50%;
     cursor: pointer;
-    user-select: none;
-    box-shadow: 0 0 8px rgba(0,0,0,0.3);
-    z-index: 1000;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s;
 }
-.logo:hover {
-    background-color: black;
-    color: white;
+#cLogo:hover {
+    background-color: white;
 }
-/* Menu dropdown */
-.menu-dropdown {
-    position: fixed;
-    top: 55px;
-    right: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    width: 180px;
-    font-family: 'Times New Roman', serif;
-    z-index: 1500;
+#loginForm, #logoDropdown {
     display: none;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: #f0f0f0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
 }
-.menu-dropdown ul {
-    list-style: none;
-    padding: 10px 0;
-    margin: 0;
+#loginForm input {
+    display: block;
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 150px;
 }
-.menu-dropdown li {
-    padding: 10px 20px;
+#loginForm button {
+    padding: 5px 10px;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    user-select: none;
-    color: black;
-    border-radius: 4px;
 }
-.menu-dropdown li:hover {
-    background-color: black;
-    color: white;
+#logoDropdown div {
+    margin: 5px 0;
+    cursor: pointer;
+}
+#logoDropdown div:hover {
+    text-decoration: underline;
 }
 </style>
 </head>
 <body>
 
-<div class="logo" id="logo">ℭ</div>
-
 <div class="title">ℭ𝔞𝔷𝔯𝔞𝔱𝔥</div>
+
 <div class="quote">
-  𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.
+𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.
 </div>
 
 <div class="info">
-  ⟢ Vein.Name : Nu’man Anis Ahmed Ansari<br>
-  ⟢ Age.Sigil : XXII.𝘴𝘵𝘪𝘭𝘭.𝘸𝘢𝘭𝘬𝘪𝘯𝘨<br>
-  ⟢ Depth.Scan : survived.unseen<br>
-  ⟢ Bound.To : what's left<br>
-  ⟢ Drift.ID : 0xCZRTH
+    ⟢ Vein.Name : Nu’man Anis Ahmed Ansari<br>
+    ⟢ Age.Sigil : XXII.𝘴𝘵𝘪𝘭𝘭.𝘸𝘢𝘭𝘬𝘪𝘯𝘨<br>
+    ⟢ Depth.Scan : survived.unseen<br>
+    ⟢ Bound.To : what's left<br>
+    ⟢ Drift.ID : 0xCZRTH
 </div>
 
-<!-- Menu dropdown -->
-<div class="menu-dropdown" id="menuDropdown">
-  <ul>
-    <li id="menuDashboard" onclick="window.location.href='dashboard.html'">Dashboard</li>
-    <li id="menuCustomize">Customize</li>
-    <li id="menuFrames">The Frames I Kept</li>
-    <li id="menuMalzreth">Malzreth Realm</li>
-    <li id="menuSettings">Settings</li>
-    <li id="menuLogout">Logout</li>
-  </ul>
+<!-- Logo -->
+<div id="cLogo"></div>
+
+<!-- Login Form -->
+<div id="loginForm">
+    <input type="text" id="username" placeholder="Void Sigil">
+    <input type="password" id="password" placeholder="Void Lock">
+    <button id="loginButton">Unlock the Void</button>
+</div>
+
+<!-- Dropdown after login -->
+<div id="logoDropdown">
+    <div id="dashboardBtn">𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡</div>
+    <div>Customize</div>
+    <div>The Frames I Kept</div>
+    <div>Malzreth Realm</div>
+    <div>Settings</div>
+    <div id="logoutBtn">Logout</div>
 </div>
 
 <script>
-const logo = document.getElementById('logo');
-const menuDropdown = document.getElementById('menuDropdown');
+let isLoggedIn = localStorage.getItem('cazrathLoggedIn') === 'true';
 
+const logo = document.getElementById('cLogo');
+const loginForm = document.getElementById('loginForm');
+const dropdown = document.getElementById('logoDropdown');
+const logoutBtn = document.getElementById('logoutBtn');
+const loginButton = document.getElementById('loginButton');
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+const dashboardBtn = document.getElementById('dashboardBtn');
+
+// Show dropdown or login on logo click
 logo.addEventListener('click', () => {
-  menuDropdown.style.display = (menuDropdown.style.display === 'block') ? 'none' : 'block';
+    if(isLoggedIn){
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        loginForm.style.display = 'none';
+    } else {
+        loginForm.style.display = loginForm.style.display === 'block' ? 'none' : 'block';
+        dropdown.style.display = 'none';
+    }
 });
 
-document.addEventListener('click', e => {
-  if (!menuDropdown.contains(e.target) && e.target !== logo) {
-    menuDropdown.style.display = 'none';
-  }
+// Handle login
+loginButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+    if(username === 'Cazrath' && password === 'Ayesha'){
+        isLoggedIn = true;
+        localStorage.setItem('cazrathLoggedIn','true');
+        loginForm.style.display = 'none';
+        dropdown.style.display = 'block';
+    } else {
+        alert('Try Cazrath Ayesha');
+    }
 });
 
-// --- Logout functionality ---
-document.getElementById('menuLogout').addEventListener('click', () => {
-    alert("There Is Nothing You Can Do."); // logout message
-    menuDropdown.style.display = 'none';
+// Handle logout
+logoutBtn.addEventListener('click', () => {
+    isLoggedIn = false;
+    localStorage.removeItem('cazrathLoggedIn');
+    dropdown.style.display = 'none';
+});
+
+// Dashboard button click (example: redirect or alert)
+dashboardBtn.addEventListener('click', () => {
+    alert('Opening 𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡...');
+    // window.location.href = 'dashboard.html'; // uncomment if you have a dashboard page
 });
 </script>
 
