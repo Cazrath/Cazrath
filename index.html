@@ -11,67 +11,87 @@
             font-family: 'Times New Roman', serif;
             margin: 0;
             padding: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
-
-        /* Top right C logo */
-        .logo-container {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
-            border: 2px solid black;
+        .header {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+        .logo {
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
+            background-color: black;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
             cursor: pointer;
+            user-select: none;
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: white;
+            border: 1px solid black;
+            min-width: 140px;
+            z-index: 1;
+        }
+        .dropdown a {
+            display: block;
+            padding: 8px 12px;
             text-decoration: none;
             color: black;
+            font-size: 14px;
         }
-
-        /* Title + quote */
+        .dropdown a:hover {
+            background-color: black;
+            color: white;
+        }
         .title {
-            margin-top: 20px;
-            font-size: 48px;
             text-align: center;
+            margin-top: 100px;
+            font-size: 64px;
+            font-family: 'Old English Text MT', serif;
         }
-
         .quote {
-            margin-top: 5px;
-            font-size: 20px;
             text-align: center;
-            max-width: 800px;
-        }
-
-        /* Bio lines */
-        .bio {
-            position: absolute;
-            top: 150px;
-            left: 30px;
+            margin-top: 20px;
             font-size: 18px;
-            line-height: 1.8;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .bio {
             text-align: left;
+            margin-top: 70px; /* increased gap */
+            margin-left: 40px;
+            font-size: 16px;
+            line-height: 1.8;
         }
     </style>
 </head>
 <body>
 
-    <!-- Top right C logo -->
-    <a href="login.html" class="logo-container">ℭ</a>
+    <div class="header">
+        <div class="logo" onclick="toggleDropdown()">ℭ</div>
+        <div class="dropdown" id="dropdownMenu">
+            <a href="login.html">Login</a>
+            <a href="#">Settings</a>
+            <a href="#">Logout</a>
+        </div>
+    </div>
 
-    <!-- Title + Quote -->
     <div class="title">ℭ𝔞𝔷𝔯𝔞𝔱𝔥</div>
+
     <div class="quote">
         𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.
     </div>
 
-    <!-- Bio section -->
     <div class="bio">
         ⟢ Vein.Name : Nu’man Anis Ahmed Ansari<br>
         ⟢ Age.Sigil : XXII.𝘴𝘵𝘪𝘭𝘭.𝘸𝘢𝘭𝘬𝘪𝘯𝘨<br>
@@ -79,6 +99,20 @@
         ⟢ Bound.To : what's left<br>
         ⟢ Drift.ID : 0xCZRTH
     </div>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById("dropdownMenu").style.display =
+                document.getElementById("dropdownMenu").style.display === "block"
+                ? "none"
+                : "block";
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.logo')) {
+                document.getElementById("dropdownMenu").style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 </html>
