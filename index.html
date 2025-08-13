@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Cazrath</title>
 <style>
 body {
@@ -31,138 +31,149 @@ body {
 }
 
 /* Logo */
-#cLogo {
-    position: absolute;
+#logo {
+    position: fixed;
     top: 20px;
     right: 20px;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     background-color: white;
+    color: black;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    line-height: 35px;
     border-radius: 50%;
-    border: 2px solid black;
     cursor: pointer;
-    transition: background-color 0.3s;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    transition: all 0.3s;
+    z-index: 1000;
 }
-#cLogo:hover {
+#logo:hover {
     background-color: black;
+    color: white;
 }
 
-/* Centered Login Popup */
-#loginForm {
+/* Login popup */
+#loginPopup {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #f0f0f0;
-    padding: 20px 25px;
+    background: white;
+    padding: 30px 40px;
     border-radius: 8px;
-    box-shadow: 0 0 12px rgba(0,0,0,0.3);
-    z-index: 100;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    z-index: 2000;
 }
-#loginForm input {
+#loginPopup input {
     display: block;
-    margin-bottom: 10px;
+    width: 250px;
     padding: 8px;
-    width: 200px;
+    margin-bottom: 15px;
+    font-size: 1em;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+#loginPopup button {
+    width: 100%;
+    padding: 10px 0;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
     font-size: 1em;
 }
-#loginForm button {
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 1em;
+#loginPopup button:hover {
+    background-color: #333;
 }
 
-/* Dropdown Menu after login */
-#logoDropdown {
+/* Dropdown menu */
+#menuDropdown {
     display: none;
-    position: absolute;
-    top: 70px;
+    position: fixed;
+    top: 60px;
     right: 20px;
-    background: #f0f0f0;
-    padding: 12px;
+    background: white;
     border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.2);
-    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    width: 180px;
+    z-index: 1500;
 }
-#logoDropdown div {
-    margin: 5px 0;
+#menuDropdown div {
+    padding: 10px 20px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
-#logoDropdown div:hover {
-    text-decoration: underline;
+#menuDropdown div:hover {
+    background-color: #eee;
 }
 </style>
 </head>
 <body>
 
 <div class="title">ℭ𝔞𝔷𝔯𝔞𝔱𝔥</div>
-
-<div class="quote">
-𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.
-</div>
-
+<div class="quote">𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.</div>
 <div class="info">
-    ⟢ Vein.Name : Nu’man Anis Ahmed Ansari<br>
-    ⟢ Age.Sigil : XXII.𝘴𝘵𝘪𝘭𝘭.𝘸𝘢𝘭𝘬𝘪𝘯𝘨<br>
-    ⟢ Depth.Scan : survived.unseen<br>
-    ⟢ Bound.To : what's left<br>
-    ⟢ Drift.ID : 0xCZRTH
+  ⟢ Vein.Name : Nu’man Anis Ahmed Ansari<br>
+  ⢢ Age.Sigil : XXII.𝘴𝘵𝘪𝘭𝘭.𝘸𝘢𝘭𝘬𝘪𝘯𝘨<br>
+  ⟢ Depth.Scan : survived.unseen<br>
+  ⟢ Bound.To : what's left<br>
+  ⟢ Drift.ID : 0xCZRTH
 </div>
 
-<!-- Logo -->
-<div id="cLogo"></div>
+<div id="logo">ℭ</div>
 
-<!-- Centered Login Form -->
-<div id="loginForm">
-    <input type="text" id="username" placeholder="Void Sigil">
-    <input type="password" id="password" placeholder="Void Lock">
-    <button id="loginButton">Unlock the Void</button>
+<!-- Login Popup -->
+<div id="loginPopup">
+    <input type="text" id="voidSigil" placeholder="Void Sigil" autocomplete="off">
+    <input type="password" id="voidLock" placeholder="Void Lock" autocomplete="off">
+    <button id="loginBtn">Unlock the Void</button>
 </div>
 
-<!-- Dropdown after login -->
-<div id="logoDropdown">
-    <div id="dashboardBtn">𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡</div>
+<!-- Dropdown Menu -->
+<div id="menuDropdown">
+    <div id="menuDashboard">𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡</div>
     <div>Customize</div>
     <div>The Frames I Kept</div>
     <div>Malzreth Realm</div>
     <div>Settings</div>
-    <div id="logoutBtn">Logout</div>
+    <div id="menuLogout">Logout</div>
 </div>
 
 <script>
 let isLoggedIn = localStorage.getItem('cazrathLoggedIn') === 'true';
 
-const logo = document.getElementById('cLogo');
-const loginForm = document.getElementById('loginForm');
-const dropdown = document.getElementById('logoDropdown');
-const logoutBtn = document.getElementById('logoutBtn');
-const loginButton = document.getElementById('loginButton');
-const usernameInput = document.getElementById('username');
-const passwordInput = document.getElementById('password');
-const dashboardBtn = document.getElementById('dashboardBtn');
+const logo = document.getElementById('logo');
+const loginPopup = document.getElementById('loginPopup');
+const menuDropdown = document.getElementById('menuDropdown');
+const loginBtn = document.getElementById('loginBtn');
+const logoutBtn = document.getElementById('menuLogout');
+const dashboardBtn = document.getElementById('menuDashboard');
 
-// Click logo
+// Toggle login popup / dropdown
 logo.addEventListener('click', () => {
     if(isLoggedIn){
-        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        loginForm.style.display = 'none';
+        menuDropdown.style.display = menuDropdown.style.display === 'block' ? 'none' : 'block';
+        loginPopup.style.display = 'none';
     } else {
-        loginForm.style.display = loginForm.style.display === 'block' ? 'none' : 'block';
-        dropdown.style.display = 'none';
+        loginPopup.style.display = loginPopup.style.display === 'block' ? 'none' : 'block';
+        menuDropdown.style.display = 'none';
     }
 });
 
-// Login
-loginButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    const username = usernameInput.value;
-    const password = passwordInput.value;
+// Login logic
+loginBtn.addEventListener('click', () => {
+    const username = document.getElementById('voidSigil').value.trim();
+    const password = document.getElementById('voidLock').value.trim();
     if(username === 'Cazrath' && password === 'Ayesha'){
         isLoggedIn = true;
         localStorage.setItem('cazrathLoggedIn','true');
-        loginForm.style.display = 'none';
-        dropdown.style.display = 'block';
+        loginPopup.style.display = 'none';
+        menuDropdown.style.display = 'block';
+        alert('Unlocked! Welcome.');
     } else {
         alert('Try Cazrath Ayesha');
     }
@@ -172,13 +183,14 @@ loginButton.addEventListener('click', (e) => {
 logoutBtn.addEventListener('click', () => {
     isLoggedIn = false;
     localStorage.removeItem('cazrathLoggedIn');
-    dropdown.style.display = 'none';
+    menuDropdown.style.display = 'none';
+    alert('Logged out.');
 });
 
 // Dashboard click example
 dashboardBtn.addEventListener('click', () => {
     alert('Opening 𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡...');
-    // window.location.href = 'dashboard.html'; // uncomment if you have a dashboard page
+    // window.location.href = 'dashboard.html'; // Uncomment if you have a dashboard page
 });
 </script>
 
