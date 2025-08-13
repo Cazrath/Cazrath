@@ -47,9 +47,11 @@
         user-select: none;
         box-shadow: 0 0 8px rgba(0,0,0,0.3);
         z-index: 1000;
+        transition: background-color 0.3s, color 0.3s;
     }
     .logo:hover {
-        background-color: #333;
+        background-color: white;
+        color: black;
     }
     /* Popup overlay */
     .popup-overlay {
@@ -150,10 +152,10 @@
     <div class="popup">
         <div class="close-btn" id="closePopup">&times;</div>
         <h2>Login</h2>
-        <label for="username">Username</label>
-        <input type="text" id="username" placeholder="Void Sigil" autocomplete="off" />
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Void Lock" autocomplete="off" />
+        <label for="voidSigil">Void Sigil</label>
+        <input type="text" id="voidSigil" placeholder="Username" autocomplete="off" />
+        <label for="voidLock">Void Lock</label>
+        <input type="password" id="voidLock" placeholder="Password" autocomplete="off" />
         <button id="loginBtn">Unlock the Void</button>
     </div>
 </div>
@@ -165,8 +167,8 @@
 
     logo.addEventListener('click', () => {
         popup.style.display = 'flex';
-        document.getElementById('username').value = '';
-        document.getElementById('password').value = '';
+        document.getElementById('voidSigil').value = '';
+        document.getElementById('voidLock').value = '';
     });
 
     closeBtn.addEventListener('click', () => {
@@ -180,7 +182,6 @@
     });
 
     document.getElementById('loginBtn').addEventListener('click', () => {
-        // You can add your login logic here
         alert('Unlocking the Void... (Add your login logic here)');
         popup.style.display = 'none';
     });
