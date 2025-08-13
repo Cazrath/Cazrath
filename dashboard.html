@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cazrath Dashboard</title>
+<style>
+body {
+    background-color: white;
+    color: black;
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    padding: 20px;
+}
+h1 {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+.console-block {
+    border: 1px solid #000;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+    background: #f8f8f8;
+    border-radius: 8px;
+}
+</style>
+</head>
+<body>
+
+<h1>ℭ𝔞𝔷𝔯𝔞𝔱𝔥 Dashboard</h1>
+
+<div class="console-block" id="scanlog">
+[ ⟢ Omni.Eye.Scanlog : v.8.0.5.𝘳𝘶𝘯𝘯𝘪𝘯𝘨 ]<br>
+⟢ Geoflux.Trace     : Loading...<br>
+⟢ Vessel.Type       : Loading...<br>
+⟢ Entry.Points      : Loading...<br>
+⟢ Pulse.Active      : Loading...
+</div>
+
+<div class="console-block" id="statusFeed">
+╭─◈ STATUS FEED<br>
+⚑ No new fragments uploaded today.<br>
+⚑ Your last model render: Loading...<br>
+⚑ 3 users accessed your Word.Rift in the past hour.<br>
+╰────────────────────────────────────────────────────────╯
+</div>
+
+<div class="console-block" id="riftMetrics">
+[ ⟢ Rift.Metrics : Passive Echo Scan ]<br>
+⟢ Total.Views     : Loading...        ⟢ Echo.Time       : Loading...<br>
+⟢ Unique.Visits   : Loading...        ⟢ Avg.View.Span   : Loading...<br>
+⟢ Portal.Uptime   : Loading...       ⟢ Most.Active.Zone: Loading...<br>
+</div>
+
+<script>
+// Placeholder function: later you can fetch live data from backend
+function updateDashboard(data){
+  document.getElementById('scanlog').innerHTML = `[ ⟢ Omni.Eye.Scanlog : v.8.0.5.𝘳𝘶𝘯𝘯𝘪𝘯𝘨 ]<br>
+⟢ Geoflux.Trace     : ${data.geoflux}<br>
+⟢ Vessel.Type       : ${data.vessel}<br>
+⟢ Entry.Points      : ${data.entry}<br>
+⟢ Pulse.Active      : ${data.active}`;
+
+  document.getElementById('statusFeed').innerHTML = `╭─◈ STATUS FEED<br>
+⚑ No new fragments uploaded today.<br>
+⚑ Your last model render: ${data.lastModel}<br>
+⚑ ${data.wordRiftAccess} users accessed your Word.Rift in the past hour.<br>
+╰────────────────────────────────────────────────────────╯`;
+
+  document.getElementById('riftMetrics').innerHTML = `[ ⟢ Rift.Metrics : Passive Echo Scan ]<br>
+⟢ Total.Views     : ${data.totalViews}        ⟢ Echo.Time       : ${data.echoTime}<br>
+⟢ Unique.Visits   : ${data.uniqueVisits}        ⟢ Avg.View.Span   : ${data.avgViewSpan}<br>
+⟢ Portal.Uptime   : ${data.portalUptime}       ⟢ Most.Active.Zone: ${data.mostActiveZone}<br>`;
+}
+
+// Example of dynamic update (you can replace with backend API fetch)
+setInterval(() => {
+  const fakeData = {
+    geoflux: "India • US • Philippines",
+    vessel: "71% Mobile | 22% Desktop | 7% Void",
+    entry: "Discord.Gate • Direct.Rift",
+    active: "∿ 6 Souls currently inside",
+    lastModel: "[Malzreth_Blade.obj]",
+    wordRiftAccess: 3,
+    totalViews: 12,
+    echoTime: "4.6 hrs",
+    uniqueVisits: 8,
+    avgViewSpan: "23 sec",
+    portalUptime: "89 hrs",
+    mostActiveZone: "India"
+  };
+  updateDashboard(fakeData);
+}, 5000);
+</script>
+
+</body>
+</html>
