@@ -29,7 +29,8 @@
     top: 250px;
     left: 20px;
   }
-  /* Logo: white bg, black text by default; black bg, white text on hover */
+
+  /* Logo styles */
   .logo {
     position: fixed;
     top: 20px;
@@ -54,7 +55,7 @@
     color: white;
   }
 
-  /* Login popup styles (unchanged) */
+  /* Login popup styles */
   .popup-overlay {
     position: fixed;
     top: 0;
@@ -130,7 +131,7 @@
   /* Dropdown menu styles */
   .menu-dropdown {
     position: fixed;
-    top: 55px; /* below the logo */
+    top: 55px;
     right: 20px;
     background: white;
     border-radius: 8px;
@@ -138,7 +139,7 @@
     width: 180px;
     font-family: 'Times New Roman', serif;
     z-index: 1500;
-    display: none; /* hidden by default */
+    display: none;
   }
   .menu-dropdown ul {
     list-style: none;
@@ -177,7 +178,7 @@
   ⟢ Drift.ID : 0xCZRTH
 </div>
 
-<!-- Login popup (unchanged) -->
+<!-- Login popup -->
 <div class="popup-overlay" id="loginPopup">
   <div class="popup">
     <div class="close-btn" id="closeLoginPopup">&times;</div>
@@ -193,7 +194,7 @@
 <!-- Dropdown menu -->
 <div class="menu-dropdown" id="menuDropdown">
   <ul>
-    <li id="menuDashboard">Dashboard</li>
+    <li id="menuDashboard">𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡</li>
     <li id="menuCustomize">Customize</li>
     <li id="menuFrames">The Frames I Kept</li>
     <li id="menuMalzreth">Malzreth Realm</li>
@@ -210,7 +211,7 @@
   const loginBtn = document.getElementById('loginBtn');
   const logoutBtn = document.getElementById('menuLogout');
 
-  // Check login state on page load
+  // Persistent login check
   function isLoggedIn() {
     return localStorage.getItem('loggedIn') === 'true';
   }
@@ -223,7 +224,7 @@
     document.getElementById('voidLock').value = '';
   }
 
-  // Toggle dropdown menu visibility
+  // Toggle dropdown
   function toggleMenu() {
     if(menuDropdown.style.display === 'block') {
       menuDropdown.style.display = 'none';
@@ -233,9 +234,9 @@
     }
   }
 
-  // Logo click event
+  // Logo click
   logo.addEventListener('click', () => {
-    if (isLoggedIn()) {
+    if(isLoggedIn()) {
       toggleMenu();
     } else {
       showLogin();
@@ -247,25 +248,18 @@
     loginPopup.style.display = 'none';
   });
 
-  // Clicking outside login popup closes it
   loginPopup.addEventListener('click', e => {
-    if (e.target === loginPopup) {
-      loginPopup.style.display = 'none';
-    }
+    if(e.target === loginPopup) loginPopup.style.display = 'none';
   });
 
-  // Clicking outside dropdown closes it
   document.addEventListener('click', e => {
-    if (!menuDropdown.contains(e.target) && e.target !== logo) {
-      menuDropdown.style.display = 'none';
-    }
+    if(!menuDropdown.contains(e.target) && e.target !== logo) menuDropdown.style.display = 'none';
   });
 
-  // Login button logic
+  // Login button
   loginBtn.addEventListener('click', () => {
     const username = document.getElementById('voidSigil').value.trim();
     const password = document.getElementById('voidLock').value.trim();
-
     if(username && password) {
       localStorage.setItem('loggedIn', 'true');
       loginPopup.style.display = 'none';
@@ -275,35 +269,18 @@
     }
   });
 
-  // Logout button logic
+  // Logout
   logoutBtn.addEventListener('click', () => {
     localStorage.removeItem('loggedIn');
     menuDropdown.style.display = 'none';
     alert('Logged out.');
   });
 
-  // Menu item click handlers with alerts
+  // Menu click handlers
   document.getElementById('menuDashboard').addEventListener('click', () => {
-    alert('Dashboard clicked! (Add your page logic here)');
     menuDropdown.style.display = 'none';
-  });
-  document.getElementById('menuCustomize').addEventListener('click', () => {
-    alert('Customize clicked! (Add your page logic here)');
-    menuDropdown.style.display = 'none';
-  });
-  document.getElementById('menuFrames').addEventListener('click', () => {
-    alert('The Frames I Kept clicked! (Add your page logic here)');
-    menuDropdown.style.display = 'none';
-  });
-  document.getElementById('menuMalzreth').addEventListener('click', () => {
-    alert('Malzreth Realm clicked! (Add your page logic here)');
-    menuDropdown.style.display = 'none';
-  });
-  document.getElementById('menuSettings').addEventListener('click', () => {
-    alert('Settings clicked! (Add your page logic here)');
-    menuDropdown.style.display = 'none';
+    window.location.href = 'dashboard.html'; // opens your dashboard page
   });
 </script>
-
 </body>
 </html>
