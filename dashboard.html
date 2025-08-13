@@ -1,9 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡</title>
+<style>
+body {
+    background-color: white;
+    color: black;
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    padding: 20px;
+}
+h1 {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+.console-block {
+    border: 1px solid #000;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+    background: #f8f8f8;
+    border-radius: 8px;
+}
+</style>
+</head>
+<body>
+
+<h1>𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡</h1>
+
+<div class="console-block" id="scanlog">
+[ ⟢ Omni.Eye.Scanlog : v.8.0.5.𝘳𝘶𝘯𝘯𝘪𝘯𝘨 ]<br>
+⟢ Geoflux.Trace     : Loading...<br>
+⟢ Vessel.Type       : Loading...<br>
+⟢ Entry.Points      : Loading...<br>
+⟢ Pulse.Active      : Loading...
+</div>
+
+<div class="console-block" id="statusFeed">
+╭─◈ STATUS FEED<br>
+⚑ No new fragments uploaded today.<br>
+⚑ Your last model render: Loading...<br>
+⚑ 0 users accessed your Word.Rift in the past hour.<br>
+╰────────────────────────────────────────────────────────╯
+</div>
+
+<div class="console-block" id="riftMetrics">
+[ ⟢ Rift.Metrics : Passive Echo Scan ]<br>
+⟢ Total.Views     : Loading...        ⢢ Echo.Time       : Loading...<br>
+⟢ Unique.Visits   : Loading...        ⢢ Avg.View.Span   : Loading...<br>
+⟢ Portal.Uptime   : Loading...       ⢢ Most.Active.Zone: Loading...<br>
+</div>
+
+<!-- Firebase Modern SDK -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
 import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
-// Firebase config
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCHxcCk0HDPNJryOuUI2DRDHz06mkq4-5I",
   authDomain: "cazrath-dashboard.firebaseapp.com",
@@ -11,7 +68,7 @@ const firebaseConfig = {
   projectId: "cazrath-dashboard",
   storageBucket: "cazrath-dashboard.firebasestorage.app",
   messagingSenderId: "219381624273",
-  appId: "1:219381624273:web:1a016197eb90ec0d4ec4f0",
+  appId: "1:219381624273:web:1a016197eb90ec4d4ec4f0",
   measurementId: "G-HYCDZVR268"
 };
 
@@ -20,7 +77,23 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase(app);
 
-// Function to update dashboard
+// Use a fixed session ID for this visitor
+const sessionId = 'visitor_' + Math.floor(Math.random()*1000000);
+
+// Function to log this visitor
+function logVisitor() {
+  const device = /Mobi|Android/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
+  set(ref(db, 'visitors/' + sessionId), {
+    lastActive: Date.now(),
+    device: device,
+    country: 'Unknown'
+  });
+}
+
+// Log visitor immediately
+logVisitor();
+
+// Update dashboard function
 function updateDashboard(visitors) {
   const countries = {};
   const devices = {Mobile:0, Desktop:0, Void:0};
@@ -43,7 +116,7 @@ function updateDashboard(visitors) {
 ⟢ Geoflux.Trace     : ${geoflux}<br>
 ⟢ Vessel.Type       : ${vessel}<br>
 ⟢ Entry.Points      : Discord.Gate • Direct.Rift<br>
-⟢ Pulse.Active      : ${active}`;
+⢢ Pulse.Active      : ${active}`;
 
   document.getElementById('statusFeed').innerHTML = `╭─◈ STATUS FEED<br>
 ⚑ No new fragments uploaded today.<br>
@@ -63,23 +136,9 @@ onValue(ref(db, 'visitors'), snapshot => {
   updateDashboard(data);
 });
 
-// Function to log a visitor automatically
-function logVisitor() {
-  const uid = 'user_' + Math.floor(Math.random()*1000000); // unique ID
-  const device = /Mobi|Android/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
-  const country = 'Unknown'; // can integrate geolocation later
-  set(ref(db, 'visitors/' + uid), {
-    lastActive: Date.now(),
-    device: device,
-    country: country
-  });
-}
-
-// Log visitor immediately
-logVisitor();
-
-// Optional: refresh your own timestamp every 30 seconds
-setInterval(() => {
-  logVisitor();
-}, 30000);
+// Refresh visitor timestamp every 30 seconds to stay active
+setInterval(logVisitor, 30000);
 </script>
+
+</body>
+</html>
