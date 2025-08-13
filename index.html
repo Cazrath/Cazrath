@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Cazrath</title>
 <style>
   body {
@@ -29,8 +29,7 @@
     top: 250px;
     left: 20px;
   }
-
-  /* Logo styling */
+  /* Logo: white bg, black text by default; black bg, white text on hover */
   .logo {
     position: fixed;
     top: 20px;
@@ -55,13 +54,13 @@
     color: white;
   }
 
-  /* Login popup */
+  /* Login popup styles */
   .popup-overlay {
     position: fixed;
-    top:0;
-    left:0;
-    width:100vw;
-    height:100vh;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0,0,0,0.5);
     display: none;
     justify-content: center;
@@ -79,47 +78,59 @@
     color: black;
   }
   .popup h2 {
-    margin-top:0;
-    margin-bottom:20px;
+    margin-top: 0;
+    margin-bottom: 20px;
     font-weight: normal;
     font-size: 1.5em;
-    text-align:center;
+    text-align: center;
   }
-  .popup label { display:block; margin-bottom:5px; font-weight:bold; }
+  .popup label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
   .popup input {
-    width:100%;
-    padding:8px 10px;
-    margin-bottom:15px;
-    border:1px solid #ccc;
-    border-radius:4px;
-    font-size:1em;
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    font-family: 'Times New Roman', serif;
+    box-sizing: border-box;
   }
   .popup button {
-    width:100%;
-    padding:10px 0;
-    background-color:black;
-    color:white;
-    border:none;
-    font-size:1.1em;
-    cursor:pointer;
-    border-radius:4px;
+    width: 100%;
+    padding: 10px 0;
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 4px;
     transition: background-color 0.3s;
+    font-family: 'Times New Roman', serif;
   }
-  .popup button:hover { background-color:#333; }
+  .popup button:hover {
+    background-color: #333;
+  }
   .popup .close-btn {
-    position:absolute;
-    top:10px;
-    right:15px;
-    font-size:1.5em;
-    color:#999;
-    cursor:pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5em;
+    color: #999;
+    cursor: pointer;
+    user-select: none;
   }
-  .popup .close-btn:hover { color:#555; }
+  .popup .close-btn:hover {
+    color: #555;
+  }
 
-  /* Compact dropdown menu */
+  /* Dropdown menu styles (compact + centered) */
   .menu-dropdown {
     position: fixed;
-    top: 55px;
+    top: 55px; /* below the logo */
     right: 20px;
     background: white;
     border-radius: 6px;
@@ -127,13 +138,12 @@
     width: 150px;
     font-family: 'Times New Roman', serif;
     z-index: 1500;
-    display: none;
+    display: none; /* hidden by default */
     text-align: center;
-    overflow: hidden;
   }
   .menu-dropdown ul {
     list-style: none;
-    padding: 0;
+    padding: 5px 0;
     margin: 0;
   }
   .menu-dropdown li {
@@ -142,6 +152,7 @@
     transition: background-color 0.3s, color 0.3s;
     user-select: none;
     color: black;
+    border-radius: 4px;
   }
   .menu-dropdown li:hover {
     background-color: black;
@@ -180,7 +191,7 @@
   </div>
 </div>
 
-<!-- Compact dropdown menu -->
+<!-- Dropdown menu -->
 <div class="menu-dropdown" id="menuDropdown">
   <ul>
     <li id="menuDashboard">𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡</li>
@@ -200,7 +211,9 @@
   const loginBtn = document.getElementById('loginBtn');
   const logoutBtn = document.getElementById('menuLogout');
 
-  function isLoggedIn() { return localStorage.getItem('loggedIn') === 'true'; }
+  function isLoggedIn() {
+    return localStorage.getItem('loggedIn') === 'true';
+  }
 
   function showLogin() {
     loginPopup.style.display = 'flex';
@@ -210,45 +223,53 @@
   }
 
   function toggleMenu() {
-    menuDropdown.style.display = menuDropdown.style.display === 'block' ? 'none' : 'block';
-    loginPopup.style.display = 'none';
+    if(menuDropdown.style.display === 'block') {
+      menuDropdown.style.display = 'none';
+    } else {
+      menuDropdown.style.display = 'block';
+      loginPopup.style.display = 'none';
+    }
   }
 
   logo.addEventListener('click', () => {
-    if(isLoggedIn()) toggleMenu(); 
-    else showLogin();
+    if (isLoggedIn()) {
+      toggleMenu();
+    } else {
+      showLogin();
+    }
   });
 
-  closeLoginPopup.addEventListener('click', () => loginPopup.style.display = 'none');
-
-  loginPopup.addEventListener('click', e => { if(e.target === loginPopup) loginPopup.style.display='none'; });
-
-  document.addEventListener('click', e => { 
-    if(!menuDropdown.contains(e.target) && e.target !== logo) menuDropdown.style.display='none';
-  });
+  closeLoginPopup.addEventListener('click', () => { loginPopup.style.display = 'none'; });
+  loginPopup.addEventListener('click', e => { if (e.target === loginPopup) loginPopup.style.display = 'none'; });
+  document.addEventListener('click', e => { if (!menuDropdown.contains(e.target) && e.target !== logo) menuDropdown.style.display = 'none'; });
 
   loginBtn.addEventListener('click', () => {
     const username = document.getElementById('voidSigil').value.trim();
     const password = document.getElementById('voidLock').value.trim();
     if(username && password) {
-      localStorage.setItem('loggedIn','true');
-      loginPopup.style.display='none';
+      localStorage.setItem('loggedIn', 'true');
+      loginPopup.style.display = 'none';
       alert('Unlocked! Welcome.');
-    } else alert('Please enter Void Sigil and Void Lock.');
+    } else {
+      alert('Please enter Void Sigil and Void Lock.');
+    }
   });
 
   logoutBtn.addEventListener('click', () => {
     localStorage.removeItem('loggedIn');
-    menuDropdown.style.display='none';
+    menuDropdown.style.display = 'none';
     alert('Logged out.');
   });
 
-  // Menu item click alerts (replace with your page logic)
-  document.getElementById('menuDashboard').addEventListener('click',()=>{alert('Dashboard clicked!'); menuDropdown.style.display='none';});
-  document.getElementById('menuCustomize').addEventListener('click',()=>{alert('Customize clicked!'); menuDropdown.style.display='none';});
-  document.getElementById('menuFrames').addEventListener('click',()=>{alert('The Frames I Kept clicked!'); menuDropdown.style.display='none';});
-  document.getElementById('menuMalzreth').addEventListener('click',()=>{alert('Malzreth Realm clicked!'); menuDropdown.style.display='none';});
-  document.getElementById('menuSettings').addEventListener('click',()=>{alert('Settings clicked!'); menuDropdown.style.display='none';});
+  // Menu clicks
+  document.getElementById('menuDashboard').addEventListener('click', () => {
+    window.location.href = 'dashboard.html'; // opens the dashboard
+  });
+  document.getElementById('menuCustomize').addEventListener('click', () => { alert('Customize clicked!'); menuDropdown.style.display='none'; });
+  document.getElementById('menuFrames').addEventListener('click', () => { alert('The Frames I Kept clicked!'); menuDropdown.style.display='none'; });
+  document.getElementById('menuMalzreth').addEventListener('click', () => { alert('Malzreth Realm clicked!'); menuDropdown.style.display='none'; });
+  document.getElementById('menuSettings').addEventListener('click', () => { alert('Settings clicked!'); menuDropdown.style.display='none'; });
 </script>
+
 </body>
 </html>
