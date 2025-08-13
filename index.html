@@ -1,52 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cazrath</title>
-    <style>
-        body {
-            background-color: white;
-            color: black;
-            font-family: 'Times New Roman', serif;
-            margin: 0;
-            padding: 0;
-        }
-        .title {
-            font-size: 4em;
-            text-align: center;
-            margin-top: 50px;
-        }
-        .quote {
-            font-size: 1.2em;
-            text-align: center;
-            margin-top: 10px;
-        }
-        .info {
-            font-size: 1em;
-            line-height: 1.8em;
-            position: absolute;
-            top: 250px; /* moved upward */
-            left: 20px; /* stays on the left */
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cazrath</title>
+<style>
+    body {
+        background-color: white;
+        color: black;
+        font-family: 'Times New Roman', serif;
+        margin: 0;
+        padding: 0;
+    }
+    .title {
+        font-size: 4em;
+        text-align: center;
+        margin-top: 50px;
+    }
+    .quote {
+        font-size: 1.2em;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .info {
+        font-size: 1em;
+        line-height: 1.8em;
+        position: absolute;
+        top: 250px;
+        left: 20px;
+    }
+    /* Circular logo on top right */
+    .logo {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        color: white;
+        font-size: 2em;
+        font-weight: bold;
+        line-height: 50px;
+        text-align: center;
+        border-radius: 50%;
+        cursor: pointer;
+        user-select: none;
+        box-shadow: 0 0 8px rgba(0,0,0,0.3);
+        z-index: 1000;
+    }
+    .logo:hover {
+        background-color: #333;
+    }
+    /* Popup overlay */
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.5);
+        display: none; /* hidden by default */
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+    }
+    /* Popup container */
+    .popup {
+        background: white;
+        padding: 30px 40px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        width: 300px;
+        position: relative;
+        font-family: 'Times New Roman', serif;
+        color: black;
+    }
+    .popup h2 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-weight: normal;
+        font-size: 1.5em;
+        text-align: center;
+    }
+    .popup label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    .popup input {
+        width: 100%;
+        padding: 8px 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1em;
+        font-family: 'Times New Roman', serif;
+        box-sizing: border-box;
+    }
+    .popup button {
+        width: 100%;
+        padding: 10px 0;
+        background-color: black;
+        color: white;
+        border: none;
+        font-size: 1.1em;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        font-family: 'Times New Roman', serif;
+    }
+    .popup button:hover {
+        background-color: #333;
+    }
+    /* Close button */
+    .popup .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 1.5em;
+        color: #999;
+        cursor: pointer;
+        user-select: none;
+    }
+    .popup .close-btn:hover {
+        color: #555;
+    }
+</style>
 </head>
 <body>
 
-    <div class="title">ℭ𝔞𝔷𝔯𝔞𝔱𝔥</div>
+<div class="logo" id="logo">ℭ</div>
 
-    <div class="quote">
-        𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.
-    </div>
+<div class="title">ℭ𝔞𝔷𝔯𝔞𝔱𝔥</div>
 
-    <!-- Left-aligned, moved up -->
-    <div class="info">
-        ⟢ Vein.Name : Nu’man Anis Ahmed Ansari<br>
-        ⟢ Age.Sigil : XXII.𝘴𝘵𝘪𝘭𝘭.𝘸𝘢𝘭𝘬𝘪𝘯𝘨<br>
-        ⟢ Depth.Scan : survived.unseen<br>
-        ⟢ Bound.To : what's left<br>
-        ⟢ Drift.ID : 0xCZRTH
+<div class="quote">
+    𝔈𝔳𝔢𝔫 𝔦𝔣 𝔱𝔥𝔢 𝔰𝔨𝔶 𝔣𝔞𝔩𝔩𝔰, 𝔱𝔥𝔢 𝔰𝔬𝔲𝔩 𝔦𝔱 𝔣𝔢𝔞𝔯𝔢𝔡 𝔪𝔬𝔰𝔱 — ℭ𝔞𝔷𝔯𝔞𝔱𝔥 — 𝔴𝔦𝔩𝔩 𝔰𝔱𝔦𝔩𝔩 𝔟𝔢 𝔰𝔱𝔞𝔫𝔡𝔦𝔫𝔤 𝔴𝔥𝔢𝔯𝔢 𝔤𝔯𝔞𝔳𝔦𝔱𝔶 𝔢𝔫𝔡𝔰.
+</div>
+
+<div class="info">
+    ⟢ Vein.Name : Nu’man Anis Ahmed Ansari<br>
+    ⟢ Age.Sigil : XXII.𝘴𝘵𝘪𝘭𝘭.𝘸𝘢𝘭𝘬𝘪𝘯𝘨<br>
+    ⟢ Depth.Scan : survived.unseen<br>
+    ⟢ Bound.To : what's left<br>
+    ⟢ Drift.ID : 0xCZRTH
+</div>
+
+<!-- Login popup -->
+<div class="popup-overlay" id="loginPopup">
+    <div class="popup">
+        <div class="close-btn" id="closePopup">&times;</div>
+        <h2>Login</h2>
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Void Sigil" autocomplete="off" />
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Void Lock" autocomplete="off" />
+        <button id="loginBtn">Login</button>
     </div>
+</div>
+
+<script>
+    const logo = document.getElementById('logo');
+    const popup = document.getElementById('loginPopup');
+    const closeBtn = document.getElementById('closePopup');
+
+    logo.addEventListener('click', () => {
+        popup.style.display = 'flex';
+        // Optional: Clear inputs when popup opens
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+    });
+
+    closeBtn.addEventListener('click', () => {
+        popup.style.display = 'none';
+    });
+
+    // Close popup if clicking outside the popup box
+    popup.addEventListener('click', (e) => {
+        if(e.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+
+    // (Optional) Login button click handler — currently just closes popup
+    document.getElementById('loginBtn').addEventListener('click', () => {
+        // Here you can add actual login logic if you want
+        alert('Login clicked! (Add your login logic here)');
+        popup.style.display = 'none';
+    });
+</script>
 
 </body>
 </html>
