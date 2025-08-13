@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cazrath</title>
 <style>
   body {
@@ -30,7 +30,7 @@
     left: 20px;
   }
 
-  /* Logo styles */
+  /* Logo styling */
   .logo {
     position: fixed;
     top: 20px;
@@ -55,13 +55,13 @@
     color: white;
   }
 
-  /* Login popup styles */
+  /* Login popup */
   .popup-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
     background: rgba(0,0,0,0.5);
     display: none;
     justify-content: center;
@@ -79,80 +79,69 @@
     color: black;
   }
   .popup h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
+    margin-top:0;
+    margin-bottom:20px;
     font-weight: normal;
     font-size: 1.5em;
-    text-align: center;
+    text-align:center;
   }
-  .popup label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
+  .popup label { display:block; margin-bottom:5px; font-weight:bold; }
   .popup input {
-    width: 100%;
-    padding: 8px 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1em;
-    font-family: 'Times New Roman', serif;
-    box-sizing: border-box;
+    width:100%;
+    padding:8px 10px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:4px;
+    font-size:1em;
   }
   .popup button {
-    width: 100%;
-    padding: 10px 0;
-    background-color: black;
-    color: white;
-    border: none;
-    font-size: 1.1em;
-    cursor: pointer;
-    border-radius: 4px;
+    width:100%;
+    padding:10px 0;
+    background-color:black;
+    color:white;
+    border:none;
+    font-size:1.1em;
+    cursor:pointer;
+    border-radius:4px;
     transition: background-color 0.3s;
-    font-family: 'Times New Roman', serif;
   }
-  .popup button:hover {
-    background-color: #333;
-  }
+  .popup button:hover { background-color:#333; }
   .popup .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 1.5em;
-    color: #999;
-    cursor: pointer;
-    user-select: none;
+    position:absolute;
+    top:10px;
+    right:15px;
+    font-size:1.5em;
+    color:#999;
+    cursor:pointer;
   }
-  .popup .close-btn:hover {
-    color: #555;
-  }
+  .popup .close-btn:hover { color:#555; }
 
-  /* Dropdown menu styles */
+  /* Compact dropdown menu */
   .menu-dropdown {
     position: fixed;
     top: 55px;
     right: 20px;
     background: white;
-    border-radius: 8px;
+    border-radius: 6px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    width: 180px;
+    width: 150px;
     font-family: 'Times New Roman', serif;
     z-index: 1500;
     display: none;
+    text-align: center;
+    overflow: hidden;
   }
   .menu-dropdown ul {
     list-style: none;
-    padding: 10px 0;
+    padding: 0;
     margin: 0;
   }
   .menu-dropdown li {
-    padding: 10px 20px;
+    padding: 8px 0;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     user-select: none;
     color: black;
-    border-radius: 4px;
   }
   .menu-dropdown li:hover {
     background-color: black;
@@ -191,15 +180,15 @@
   </div>
 </div>
 
-<!-- Dropdown menu -->
+<!-- Compact dropdown menu -->
 <div class="menu-dropdown" id="menuDropdown">
   <ul>
     <li id="menuDashboard">𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡</li>
-    <li id="menuCustomize">Customize</li>
-    <li id="menuFrames">The Frames I Kept</li>
-    <li id="menuMalzreth">Malzreth Realm</li>
-    <li id="menuSettings">Settings</li>
-    <li id="menuLogout">Logout</li>
+    <li id="menuCustomize">ℭ𝔲𝔰𝔱𝔬𝔪𝔦𝔷𝔢</li>
+    <li id="menuFrames">𝔗𝔥𝔢 𝔉𝔯𝔞𝔪𝔢𝔰 ℑ 𝔎𝔢𝔭𝔱</li>
+    <li id="menuMalzreth">𝔐𝔞𝔩𝔷𝔯𝔢𝔱𝔥 ℜ𝔢𝔞𝔩𝔪</li>
+    <li id="menuSettings">𝔖𝔢𝔱𝔱𝔦𝔫𝔤𝔰</li>
+    <li id="menuLogout">𝔏𝔬𝔤𝔬𝔲𝔱</li>
   </ul>
 </div>
 
@@ -211,12 +200,8 @@
   const loginBtn = document.getElementById('loginBtn');
   const logoutBtn = document.getElementById('menuLogout');
 
-  // Persistent login check
-  function isLoggedIn() {
-    return localStorage.getItem('loggedIn') === 'true';
-  }
+  function isLoggedIn() { return localStorage.getItem('loggedIn') === 'true'; }
 
-  // Show login popup
   function showLogin() {
     loginPopup.style.display = 'flex';
     menuDropdown.style.display = 'none';
@@ -224,63 +209,46 @@
     document.getElementById('voidLock').value = '';
   }
 
-  // Toggle dropdown
   function toggleMenu() {
-    if(menuDropdown.style.display === 'block') {
-      menuDropdown.style.display = 'none';
-    } else {
-      menuDropdown.style.display = 'block';
-      loginPopup.style.display = 'none';
-    }
+    menuDropdown.style.display = menuDropdown.style.display === 'block' ? 'none' : 'block';
+    loginPopup.style.display = 'none';
   }
 
-  // Logo click
   logo.addEventListener('click', () => {
-    if(isLoggedIn()) {
-      toggleMenu();
-    } else {
-      showLogin();
-    }
+    if(isLoggedIn()) toggleMenu(); 
+    else showLogin();
   });
 
-  // Close login popup
-  closeLoginPopup.addEventListener('click', () => {
-    loginPopup.style.display = 'none';
+  closeLoginPopup.addEventListener('click', () => loginPopup.style.display = 'none');
+
+  loginPopup.addEventListener('click', e => { if(e.target === loginPopup) loginPopup.style.display='none'; });
+
+  document.addEventListener('click', e => { 
+    if(!menuDropdown.contains(e.target) && e.target !== logo) menuDropdown.style.display='none';
   });
 
-  loginPopup.addEventListener('click', e => {
-    if(e.target === loginPopup) loginPopup.style.display = 'none';
-  });
-
-  document.addEventListener('click', e => {
-    if(!menuDropdown.contains(e.target) && e.target !== logo) menuDropdown.style.display = 'none';
-  });
-
-  // Login button
   loginBtn.addEventListener('click', () => {
     const username = document.getElementById('voidSigil').value.trim();
     const password = document.getElementById('voidLock').value.trim();
     if(username && password) {
-      localStorage.setItem('loggedIn', 'true');
-      loginPopup.style.display = 'none';
+      localStorage.setItem('loggedIn','true');
+      loginPopup.style.display='none';
       alert('Unlocked! Welcome.');
-    } else {
-      alert('Please enter Void Sigil and Void Lock.');
-    }
+    } else alert('Please enter Void Sigil and Void Lock.');
   });
 
-  // Logout
   logoutBtn.addEventListener('click', () => {
     localStorage.removeItem('loggedIn');
-    menuDropdown.style.display = 'none';
+    menuDropdown.style.display='none';
     alert('Logged out.');
   });
 
-  // Menu click handlers
-  document.getElementById('menuDashboard').addEventListener('click', () => {
-    menuDropdown.style.display = 'none';
-    window.location.href = 'dashboard.html'; // opens your dashboard page
-  });
+  // Menu item click alerts (replace with your page logic)
+  document.getElementById('menuDashboard').addEventListener('click',()=>{alert('Dashboard clicked!'); menuDropdown.style.display='none';});
+  document.getElementById('menuCustomize').addEventListener('click',()=>{alert('Customize clicked!'); menuDropdown.style.display='none';});
+  document.getElementById('menuFrames').addEventListener('click',()=>{alert('The Frames I Kept clicked!'); menuDropdown.style.display='none';});
+  document.getElementById('menuMalzreth').addEventListener('click',()=>{alert('Malzreth Realm clicked!'); menuDropdown.style.display='none';});
+  document.getElementById('menuSettings').addEventListener('click',()=>{alert('Settings clicked!'); menuDropdown.style.display='none';});
 </script>
 </body>
 </html>
