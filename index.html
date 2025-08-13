@@ -29,6 +29,8 @@ body {
     top: 250px;
     left: 20px;
 }
+
+/* Logo */
 #cLogo {
     position: absolute;
     top: 20px;
@@ -44,26 +46,44 @@ body {
 #cLogo:hover {
     background-color: black;
 }
-#loginForm, #logoDropdown {
+
+/* Centered Login Popup */
+#loginForm {
     display: none;
-    position: absolute;
-    top: 70px;
-    right: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: #f0f0f0;
-    padding: 15px;
+    padding: 20px 25px;
     border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    box-shadow: 0 0 12px rgba(0,0,0,0.3);
     z-index: 100;
 }
 #loginForm input {
     display: block;
     margin-bottom: 10px;
-    padding: 5px;
-    width: 150px;
+    padding: 8px;
+    width: 200px;
+    font-size: 1em;
 }
 #loginForm button {
-    padding: 5px 10px;
+    padding: 8px 12px;
     cursor: pointer;
+    font-size: 1em;
+}
+
+/* Dropdown Menu after login */
+#logoDropdown {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: #f0f0f0;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    z-index: 100;
 }
 #logoDropdown div {
     margin: 5px 0;
@@ -90,9 +110,10 @@ body {
     ⟢ Drift.ID : 0xCZRTH
 </div>
 
+<!-- Logo -->
 <div id="cLogo"></div>
 
-<!-- Login Form -->
+<!-- Centered Login Form -->
 <div id="loginForm">
     <input type="text" id="username" placeholder="Void Sigil">
     <input type="password" id="password" placeholder="Void Lock">
@@ -121,7 +142,7 @@ const usernameInput = document.getElementById('username');
 const passwordInput = document.getElementById('password');
 const dashboardBtn = document.getElementById('dashboardBtn');
 
-// Toggle dropdown or login
+// Click logo
 logo.addEventListener('click', () => {
     if(isLoggedIn){
         dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
@@ -132,7 +153,7 @@ logo.addEventListener('click', () => {
     }
 });
 
-// Login handler
+// Login
 loginButton.addEventListener('click', (e) => {
     e.preventDefault();
     const username = usernameInput.value;
@@ -147,7 +168,7 @@ loginButton.addEventListener('click', (e) => {
     }
 });
 
-// Logout handler
+// Logout
 logoutBtn.addEventListener('click', () => {
     isLoggedIn = false;
     localStorage.removeItem('cazrathLoggedIn');
@@ -157,7 +178,7 @@ logoutBtn.addEventListener('click', () => {
 // Dashboard click example
 dashboardBtn.addEventListener('click', () => {
     alert('Opening 𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡...');
-    // window.location.href = 'dashboard.html'; // uncomment if dashboard page exists
+    // window.location.href = 'dashboard.html'; // uncomment if you have a dashboard page
 });
 </script>
 
