@@ -1,66 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡</title>
-<style>
-body {
-    background-color: white;
-    color: black;
-    font-family: 'Courier New', monospace;
-    margin: 0;
-    padding: 20px;
-}
-h1 {
-    text-align: center;
-    font-size: 3em;
-    margin-bottom: 10px;
-}
-.console-block {
-    border: 1px solid #000;
-    padding: 15px 20px;
-    margin-bottom: 20px;
-    white-space: pre-wrap;
-    background: #f8f8f8;
-    border-radius: 8px;
-}
-</style>
-</head>
-<body>
-
-<h1>𝔇𝔞𝔰𝔥𝔟𝔬𝔞𝔯𝔡</h1>
-
-<div class="console-block" id="scanlog">
-[ ⟢ Omni.Eye.Scanlog : v.8.0.5.𝘳𝘶𝘯𝘯𝘪𝘯𝘨 ]<br>
-⟢ Geoflux.Trace     : Loading...<br>
-⟢ Vessel.Type       : Loading...<br>
-⟢ Entry.Points      : Loading...<br>
-⟢ Pulse.Active      : Loading...
-</div>
-
-<div class="console-block" id="statusFeed">
-╭─◈ STATUS FEED<br>
-⚑ No new fragments uploaded today.<br>
-⚑ Your last model render: Loading...<br>
-⚑ 0 users accessed your Word.Rift in the past hour.<br>
-╰────────────────────────────────────────────────────────╯
-</div>
-
-<div class="console-block" id="riftMetrics">
-[ ⟢ Rift.Metrics : Passive Echo Scan ]<br>
-⟢ Total.Views     : Loading...        ⢢ Echo.Time       : Loading...<br>
-⟢ Unique.Visits   : Loading...        ⢢ Avg.View.Span   : Loading...<br>
-⟢ Portal.Uptime   : Loading...       ⢢ Most.Active.Zone: Loading...<br>
-</div>
-
-<!-- Firebase Modern SDK -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
 import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
-// Firebase configuration
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyCHxcCk0HDPNJryOuUI2DRDHz06mkq4-5I",
   authDomain: "cazrath-dashboard.firebaseapp.com",
@@ -76,9 +19,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase(app);
-console.log("Firebase connected!");
 
-// Update dashboard function
+// Function to update dashboard
 function updateDashboard(visitors) {
   const countries = {};
   const devices = {Mobile:0, Desktop:0, Void:0};
@@ -115,39 +57,29 @@ function updateDashboard(visitors) {
 ⟢ Portal.Uptime   : 89 hrs       ⢢ Most.Active.Zone: ${geoflux.split(' • ')[0] || 'Unknown'}<br>`;
 }
 
-// Listen to Firebase 'visitors' node
+// Listen for changes in Firebase
 onValue(ref(db, 'visitors'), snapshot => {
   const data = snapshot.val() || {};
   updateDashboard(data);
 });
 
-// Function to log a visitor/event
-function sendEvent(user, country='Unknown', device='Void') {
-  set(ref(db, 'visitors/' + user), {
+// Function to log a visitor automatically
+function logVisitor() {
+  const uid = 'user_' + Math.floor(Math.random()*1000000); // unique ID
+  const device = /Mobi|Android/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
+  const country = 'Unknown'; // can integrate geolocation later
+  set(ref(db, 'visitors/' + uid), {
     lastActive: Date.now(),
-    country: country,
-    device: device
+    device: device,
+    country: country
   });
-  console.log(`Event sent for ${user}`);
 }
 
-// --- Optional: simulate live visitors ---
-const testUsers = [
-  {name: 'NuMan', country: 'India', device: 'Desktop'},
-  {name: 'Ayesha', country: 'USA', device: 'Mobile'},
-  {name: 'Malzreth', country: 'UK', device: 'Desktop'},
-  {name: 'CazrathBot', country: 'Void', device: 'Void'},
-];
+// Log visitor immediately
+logVisitor();
 
-testUsers.forEach(u => sendEvent(u.name,u.country,u.device));
-
-// Simulate random activity every 10 seconds
+// Optional: refresh your own timestamp every 30 seconds
 setInterval(() => {
-  const randomUser = testUsers[Math.floor(Math.random() * testUsers.length)];
-  sendEvent(randomUser.name, randomUser.country, randomUser.device);
-}, 10000);
-
+  logVisitor();
+}, 30000);
 </script>
-
-</body>
-</html>
