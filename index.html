@@ -5,12 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Cazrath</title>
 <style>
+  :root {
+    --bg: #ffffff;
+    --text: #000000;
+    --surface: #ffffff;
+    --surface-text: #000000;
+    --border: #cccccc;
+    --overlay: rgba(0,0,0,0.5);
+    --hover-bg: #000000;
+    --hover-text: #ffffff;
+    --button-bg: #000000;
+    --button-text: #ffffff;
+    --button-hover-bg: #333333;
+  }
+
+  body.dark-mode {
+    --bg: #111111;
+    --text: #f4f4f4;
+    --surface: #1e1e1e;
+    --surface-text: #f4f4f4;
+    --border: #555555;
+    --overlay: rgba(0,0,0,0.7);
+    --hover-bg: #f4f4f4;
+    --hover-text: #111111;
+    --button-bg: #f4f4f4;
+    --button-text: #111111;
+    --button-hover-bg: #d8d8d8;
+  }
+
   body {
-    background-color: white;
-    color: black;
+    background-color: var(--bg);
+    color: var(--text);
     font-family: 'Times New Roman', serif;
     margin: 0;
     padding: 0;
+    transition: background-color 0.3s, color 0.3s;
   }
   .title {
     font-size: 4em;
@@ -36,8 +65,8 @@
     right: 20px;
     width: 30px;
     height: 30px;
-    background-color: white;
-    color: black;
+    background-color: var(--surface);
+    color: var(--surface-text);
     font-size: 1.5em;
     font-weight: bold;
     line-height: 30px;
@@ -50,8 +79,8 @@
     transition: background-color 0.3s, color 0.3s;
   }
   .logo:hover {
-    background-color: black;
-    color: white;
+    background-color: var(--hover-bg);
+    color: var(--hover-text);
   }
 
   /* Login popup styles */
@@ -61,21 +90,21 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.5);
+    background: var(--overlay);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 2000;
   }
   .popup {
-    background: white;
+    background: var(--surface);
     padding: 30px 40px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
     width: 300px;
     position: relative;
     font-family: 'Times New Roman', serif;
-    color: black;
+    color: var(--surface-text);
   }
   .popup h2 {
     margin-top: 0;
@@ -93,7 +122,7 @@
     width: 100%;
     padding: 8px 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border);
     border-radius: 4px;
     font-size: 1em;
     font-family: 'Times New Roman', serif;
@@ -102,8 +131,8 @@
   .popup button {
     width: 100%;
     padding: 10px 0;
-    background-color: black;
-    color: white;
+    background-color: var(--hover-bg);
+    color: var(--hover-text);
     border: none;
     font-size: 1.1em;
     cursor: pointer;
@@ -112,7 +141,7 @@
     font-family: 'Times New Roman', serif;
   }
   .popup button:hover {
-    background-color: #333;
+    background-color: var(--button-hover-bg);
   }
   .popup .close-btn {
     position: absolute;
@@ -132,7 +161,7 @@
     position: fixed;
     top: 55px; /* below the logo */
     right: 20px;
-    background: white;
+    background: var(--surface);
     border-radius: 6px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     width: 150px;
@@ -151,12 +180,12 @@
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     user-select: none;
-    color: black;
+    color: var(--surface-text);
     border-radius: 4px;
   }
   .menu-dropdown li:hover {
-    background-color: black;
-    color: white;
+    background-color: var(--hover-bg);
+    color: var(--hover-text);
   }
 </style>
 </head>
@@ -199,6 +228,7 @@
     <li id="menuFrames">𝔗𝔥𝔢 𝔉𝔯𝔞𝔪𝔢𝔰 ℑ 𝔎𝔢𝔭𝔱</li>
     <li id="menuMalzreth">𝔐𝔞𝔩𝔷𝔯𝔢𝔱𝔥 ℜ𝔢𝔞𝔩𝔪</li>
     <li id="menuSettings">𝔖𝔢𝔱𝔱𝔦𝔫𝔤𝔰</li>
+    <li id="menuDarkMode">𝔇𝔞𝔯𝔨 𝔐𝔬𝔡𝔢</li>
     <li id="menuLogout">𝔏𝔬𝔤𝔬𝔲𝔱</li>
   </ul>
 </div>
@@ -260,6 +290,24 @@
     menuDropdown.style.display = 'none';
     alert('Logged out.');
   });
+
+
+  const darkModeBtn = document.getElementById('menuDarkMode');
+
+  function applyTheme() {
+    const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
+    document.body.classList.toggle('dark-mode', darkModeEnabled);
+    darkModeBtn.textContent = darkModeEnabled ? '𝔏𝔦𝔤𝔥𝔱 𝔐𝔬𝔡𝔢' : '𝔇𝔞𝔯𝔨 𝔐𝔬𝔡𝔢';
+  }
+
+  darkModeBtn.addEventListener('click', () => {
+    const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
+    localStorage.setItem('darkMode', (!darkModeEnabled).toString());
+    applyTheme();
+    menuDropdown.style.display = 'none';
+  });
+
+  applyTheme();
 
   // Menu clicks
   document.getElementById('menuDashboard').addEventListener('click', () => {
